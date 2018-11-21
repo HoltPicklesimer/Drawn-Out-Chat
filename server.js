@@ -25,6 +25,8 @@ app.get("/getUser", getUser);
 app.get("/getChatRoom", getChatRoom);
 app.get("/getUserRooms", getUserRooms);
 app.get("/getChatUsers", getChatUsers);
+app.get("/getComment", getComment);
+app.get("/getRoomComments", getRoomComments);
 
 
 // Get a user
@@ -80,6 +82,36 @@ function getChatUsers(req, res) {
 	var id = req.query.id;
 	console.log("Trying to connect to a database at " + connectionString);
 	getChatUsersFromDb(id, function (error, result) {
+		if (error || result == null) {
+			res.status(500).json({success:false, data:error});
+		} else {
+			var rooms = result;
+			res.status(200).json(result);
+		}
+	});
+}
+
+// Get a comment
+function getComment(req, res) {
+	console.log("Getting Comment " + req.query.id);
+	var id = req.query.id;
+	console.log("Trying to connect to a database at " + connectionString);
+	getCommentFromDb(id, function (error, result) {
+		if (error || result == null || result.length != 1) {
+			res.status(500).json({success:false, data:error});
+		} else {
+			var room = result[0];
+			res.status(200).json(result[0]);
+		}
+	});
+}
+
+// Get the comments in a chat room
+function getRoomComments(req, res) {
+	console.log("Getting Comments of Chat Room " + req.query.id);
+	var id = req.query.id;
+	console.log("Trying to connect to a database at " + connectionString);
+	getRoomCommentsFromDb(id, function (error, result) {
 		if (error || result == null) {
 			res.status(500).json({success:false, data:error});
 		} else {
@@ -175,6 +207,48 @@ function getChatUsersFromDb(id, callback) {
 	var params = [id];
 
 	console.log("Getting users now, chat room id = " + id);
+
+	pool.query(sql, params, function(err, result){
+
+		if (err) {
+			console.log("Error in query: ");
+			console.log(err);
+			callback(err, null);
+		}
+
+		console.log("Found result: " + JSON.stringify(result.rows));
+
+		callback(null, result.rows);
+	});
+}
+
+// Get a comment from the database
+function getCommentFromDb(id, callback) {
+	var sql = queries[5];
+	var params = [id];
+
+	console.log("Getting comment now, id = " + id);
+
+	pool.query(sql, params, function(err, result){
+
+		if (err) {
+			console.log("Error in query: ");
+			console.log(err);
+			callback(err, null);
+		}
+
+		console.log("Found result: " + JSON.stringify(result.rows));
+
+		callback(null, result.rows);
+	});
+}
+
+// Get chat rooms of a user from the database
+function getRoomCommentsFromDb(id, callback) {
+	var sql = queries[5];
+	var params = [id];
+
+	console.log("Getting comments now, chat room id = " + id);
 
 	pool.query(sql, params, function(err, result){
 
