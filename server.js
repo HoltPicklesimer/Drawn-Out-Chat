@@ -3,7 +3,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 const path = require("path");
 const selects = require("./selects");
-const queries = require("./inserts");
+const inserts = require("./inserts");
 
 // Set up the static and views directories
 app.use(express.static(__dirname + '/public'));
