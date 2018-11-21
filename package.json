@@ -1,0 +1,16 @@
+{
+  "name": "drawnoutchat",
+  "version": "1.0.0",
+  "description": "Drawn Out Chat",
+  "main": "\u001b[D\u001b[D\u001b[D\u001bserver.js)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Holt Picklesimer",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "pg": "^7.6.1"
+  }
+}
