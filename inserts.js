@@ -22,7 +22,7 @@ postUser: function postUser(req, res) {
 
 }
 
-var inserts = [
+var queries = [
 	"INSERT INTO users (username, password) VALUES ($1::varchar, $2::varchar)"
 ];
 
