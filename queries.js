@@ -1,3 +1,8 @@
+// Get the database url
+const connectionString = process.env.DATABASE_URL;
+const { Pool } = require("pg");
+const pool = new Pool({connectionString: connectionString});
+
 module.exports = {
 // Get a user
 getUser: function getUser(req, res) {

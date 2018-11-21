@@ -4,12 +4,6 @@ const port = process.env.PORT || 5000;
 const path = require("path");
 const queries = require("./queries");
 
-// Get the database url
-const connectionString = process.env.DATABASE_URL;
-const { Pool } = require("pg");
-
-const pool = new Pool({connectionString: connectionString});
-
 // Set up the static and views directories
 app.use(express.static(__dirname + '/public'));
 app.set("views", path.join(__dirname, 'views'));
