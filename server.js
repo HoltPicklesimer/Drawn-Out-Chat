@@ -56,7 +56,7 @@ var queries = [
 // Get a user from the database
 function getUserFromDb(id, callback) {
 	var sql = queries[0];
-	console.log(id);
+	console.log("Getting user now, id = " + id);
 
 	var params = [id];
 
