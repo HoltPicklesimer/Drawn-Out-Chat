@@ -59,7 +59,7 @@ getChatUsers: function getChatUsers(req, res) {
 			res.status(200).json(result);
 		}
 	});
-}
+},
 
 // Get a comment
 getComment: function getComment(req, res) {
