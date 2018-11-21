@@ -22,6 +22,7 @@ app.listen(app.get('port'), function(req, res){
 });
 
 app.get("/getUser", getUser);
+app.get("/getChatRoom", getChatRoom);
 
 // Get a user
 function getUser(req, res) {
@@ -30,7 +31,22 @@ function getUser(req, res) {
 	var username = req.query.username;
 	var password = req.query.password;
 	console.log("Trying to connect to a database at " + connectionString);
-	getUserFromDb(id, username, password, function (error, result) {
+	getUserFromDb(id, function (error, result) {
+		if (error || result == null || result.length != 1) {
+			res.status(500).json({success:false, data:error});
+		} else {
+			var user = result[0];
+			res.status(200).json(result[0]);
+		}
+	});
+}
+
+// Get a chat room
+function getChatRoom(req, res) {
+	console.log("Getting Chat Room " + req.query.id);
+	var id = req.query.id;
+	console.log("Trying to connect to a database at " + connectionString);
+	getRoomFromDb(id, username, password, function (error, result) {
 		if (error || result == null || result.length != 1) {
 			res.status(500).json({success:false, data:error});
 		} else {
@@ -41,13 +57,13 @@ function getUser(req, res) {
 }
 
 var queries = [
-"SELECT id, username, password FROM users WHERE id = $1::int",
-"SELECT id, username, password FROM users WHERE username = $1::varchar AND password = $2::varchar",
-"SELECT id, name, admin_id, image_data FROM chat_rooms WHERE id = $1::int",
-"SELECT id, user_id, chat_id FROM chat_users WHERE id = $1::int",
-"SELECT id, user_id, chat_id FROM chat_users WHERE user_id = $1::int AND chat_id = $2::int",
-"SELECT id, chat_id, user_id, content, date_published FROM comments WHERE id = $1::int",
-"SELECT id, chat_id, user_id, content, date_published FROM comments WHERE chat_id = $1 ORDER BY date_published DESC"
+	"SELECT id, username, password FROM users WHERE id = $1::int",
+	"SELECT id, username, password FROM users WHERE username = $1::varchar AND password = $2::varchar",
+	"SELECT id, name, admin_id, image_data FROM chat_rooms WHERE id = $1::int",
+	"SELECT id, user_id, chat_id FROM chat_users WHERE id = $1::int",
+	"SELECT id, user_id, chat_id FROM chat_users WHERE user_id = $1::int AND chat_id = $2::int",
+	"SELECT id, chat_id, user_id, content, date_published FROM comments WHERE id = $1::int",
+	"SELECT id, chat_id, user_id, content, date_published FROM comments WHERE chat_id = $1 ORDER BY date_published DESC"
 ];
 
 // Get a user from the database
@@ -63,6 +79,27 @@ function getUserFromDb(id, username, password, callback) {
 		params = [id];
 
 	console.log("Getting user now, id = " + id + " " + username + " " + password);
+
+	pool.query(sql, params, function(err, result){
+
+		if (err) {
+			console.log("Error in query: ");
+			console.log(err);
+			callback(err, null);
+		}
+
+		console.log("Found result: " + JSON.stringify(result.rows));
+
+		callback(null, result.rows);
+	});
+}
+
+// Get a chat room from the database
+function getRoomFromDb(id, callback) {
+	var sql = queries[2];
+	var params = [id];
+
+	console.log("Getting chat room now, id = " + id);
 
 	pool.query(sql, params, function(err, result){
 
