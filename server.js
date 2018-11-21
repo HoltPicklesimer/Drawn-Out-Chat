@@ -30,7 +30,7 @@ function getUser(req, res) {
 	var username = req.query.username;
 	var password = req.query.password;
 	console.log("Trying to connect to a database at " + connectionString);
-	getUserFromDb(id, function (error, result) {
+	getUserFromDb(id, username, password, function (error, result) {
 		if (error || result == null || result.length != 1) {
 			res.status(500).json({success:false, data:error});
 		} else {
@@ -51,11 +51,18 @@ var queries = [
 ];
 
 // Get a user from the database
-function getUserFromDb(id, callback) {
+function getUserFromDb(id, username, password, callback) {
 	var sql = queries[0];
-	console.log("Getting user now, id = " + id);
+	var params;
+	if (!(username === "" || password === ""))
+	{
+		sql = queries[1];
+		params = [username, password];
+	}
+	else
+		params = [id];
 
-	var params = [id];
+	console.log("Getting user now, id = " + id + " " + username + " " password);
 
 	pool.query(sql, params, function(err, result){
 
