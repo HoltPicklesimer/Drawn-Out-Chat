@@ -17,7 +17,9 @@ app.listen(app.get('port'), function(req, res){
 	console.log("Listening on port " + app.get('port'));
 });
 
-app.get("/", res.sendFile());
+app.get("/", function(req, res) {
+	res.sendFile()
+});
 app.get("/getUser", selects.getUser);
 app.get("/getChatRoom", selects.getChatRoom);
 app.get("/getUserRooms", selects.getUserRooms);
