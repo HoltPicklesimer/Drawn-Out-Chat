@@ -42,7 +42,7 @@ function getUser(req, res) {
 
 var queries = [
 "SELECT id, username, password FROM users WHERE id = $1::int",
-"SELECT id, username, password FROM users WHERE username = $1::String AND password = $2::String",
+"SELECT id, username, password FROM users WHERE username = $1::varchar AND password = $2::varchar",
 "SELECT id, name, admin_id, image_data FROM chat_rooms WHERE id = $1::int",
 "SELECT id, user_id, chat_id FROM chat_users WHERE id = $1::int",
 "SELECT id, user_id, chat_id FROM chat_users WHERE user_id = $1::int AND chat_id = $2::int",
