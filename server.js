@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 5000;
+const path = require("path");
 
 // Get the database url
 const connectionString = process.env.DATABASE_URL;
