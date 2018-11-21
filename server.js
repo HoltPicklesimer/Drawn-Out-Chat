@@ -54,7 +54,7 @@ var queries = [
 function getUserFromDb(id, username, password, callback) {
 	var sql = queries[0];
 	var params;
-	if (!(username === "" || password === ""))
+	if (username && password)
 	{
 		sql = queries[1];
 		params = [username, password];
