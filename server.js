@@ -20,7 +20,7 @@ app.listen(app.get('port'), function(req, res){
 	console.log("Listening on port " + app.get('port'));
 });
 
-app.get("/getUser", getPerson);
+app.get("/getUser", getUser);
 
 // Get a user
 function getUser(req, res) {
