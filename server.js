@@ -62,7 +62,7 @@ function getUserFromDb(id, username, password, callback) {
 	else
 		params = [id];
 
-	console.log("Getting user now, id = " + id + " " + username + " " password);
+	console.log("Getting user now, id = " + id + " " + username + " " + password);
 
 	pool.query(sql, params, function(err, result){
 
