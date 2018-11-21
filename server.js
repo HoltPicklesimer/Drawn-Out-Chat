@@ -24,6 +24,7 @@ app.listen(app.get('port'), function(req, res){
 app.get("/getUser", getUser);
 app.get("/getChatRoom", getChatRoom);
 app.get("/getUserRooms", getUserRooms);
+app.get("/getChatUsers", getChatUsers);
 
 
 // Get a user
@@ -60,10 +61,25 @@ function getChatRoom(req, res) {
 
 // Get the chat rooms of a user
 function getUserRooms(req, res) {
-	console.log("Getting User in Chat relationship " + req.query.id);
+	console.log("Getting Chat Rooms of User " + req.query.id);
 	var id = req.query.id;
 	console.log("Trying to connect to a database at " + connectionString);
 	getUserRoomsFromDb(id, function (error, result) {
+		if (error || result == null) {
+			res.status(500).json({success:false, data:error});
+		} else {
+			var rooms = result;
+			res.status(200).json(result);
+		}
+	});
+}
+
+// Get the users of a chat room
+function getChatUsers(req, res) {
+	console.log("Getting Users of a Chat Room " + req.query.id);
+	var id = req.query.id;
+	console.log("Trying to connect to a database at " + connectionString);
+	getChatUsersFromDb(id, function (error, result) {
 		if (error || result == null) {
 			res.status(500).json({success:false, data:error});
 		} else {
@@ -138,6 +154,27 @@ function getUserRoomsFromDb(id, callback) {
 	var params = [id];
 
 	console.log("Getting chat rooms now, user id = " + id);
+
+	pool.query(sql, params, function(err, result){
+
+		if (err) {
+			console.log("Error in query: ");
+			console.log(err);
+			callback(err, null);
+		}
+
+		console.log("Found result: " + JSON.stringify(result.rows));
+
+		callback(null, result.rows);
+	});
+}
+
+// Get chat rooms of a user from the database
+function getChatUsersFromDb(id, callback) {
+	var sql = queries[4];
+	var params = [id];
+
+	console.log("Getting users now, chat room id = " + id);
 
 	pool.query(sql, params, function(err, result){
 
