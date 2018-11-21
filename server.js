@@ -56,6 +56,7 @@ var queries = [
 // Get a user from the database
 function getUserFromDb(id, callback) {
 	var sql = queries[0];
+	console.log(id);
 
 	var params = [id];
 
