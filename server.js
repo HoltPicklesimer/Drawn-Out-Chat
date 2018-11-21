@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 5000;
 const path = require("path");
-const queries = require("./queries");
+const selects = require("./selects");
+const queries = require("./inserts");
 
 // Set up the static and views directories
 app.use(express.static(__dirname + '/public'));
@@ -16,9 +17,10 @@ app.listen(app.get('port'), function(req, res){
 	console.log("Listening on port " + app.get('port'));
 });
 
-app.get("/getUser", queries.getUser);
-app.get("/getChatRoom", queries.getChatRoom);
-app.get("/getUserRooms", queries.getUserRooms);
-app.get("/getChatUsers", queries.getChatUsers);
-app.get("/getComment", queries.getComment);
-app.get("/getRoomComments", queries.getRoomComments);
+app.get("/getUser", selects.getUser);
+app.get("/getChatRoom", selects.getChatRoom);
+app.get("/getUserRooms", selects.getUserRooms);
+app.get("/getChatUsers", selects.getChatUsers);
+app.get("/getComment", selects.getComment);
+app.get("/getRoomComments", selects.getRoomComments);
+app.post("/postUser", inserts.postUser);
