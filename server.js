@@ -23,6 +23,8 @@ app.listen(app.get('port'), function(req, res){
 
 app.get("/getUser", getUser);
 app.get("/getChatRoom", getChatRoom);
+app.get("/getUserRooms", getUserRooms);
+
 
 // Get a user
 function getUser(req, res) {
