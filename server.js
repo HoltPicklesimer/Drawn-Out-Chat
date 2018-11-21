@@ -25,7 +25,7 @@ app.get("/getUser", getUser);
 
 // Get a user
 function getUser(req, res) {
-	console.log("Getting User " + res.query.id);
+	console.log("Getting User " + req.query.id);
 	var id = req.query.id;
 	var username = req.query.username;
 	var password = req.query.password;
