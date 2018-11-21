@@ -30,17 +30,14 @@ function getUser(req, res) {
 	var username = req.query.username;
 	var password = req.query.password;
 	console.log("Trying to connect to a database at " + connectionString);
-	getUserFromDb(id, verify);
-}
-
-// Call when a query is made to the database
-function verify (error, result) {
-	if (error || result == null || result.length != 1) {
-		res.status(500).json({success:false, data:error});
-	} else {
-		var user = result[0];
-		res.status(200).json(result[0]);
-	}
+	getUserFromDb(id, function (error, result) {
+		if (error || result == null || result.length != 1) {
+			res.status(500).json({success:false, data:error});
+		} else {
+			var user = result[0];
+			res.status(200).json(result[0]);
+		}
+	});
 }
 
 var queries = [
