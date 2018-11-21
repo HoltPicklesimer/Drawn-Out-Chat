@@ -11,7 +11,7 @@ getUser: function getUser(req, res) {
 	var username = req.query.username;
 	var password = req.query.password;
 	console.log("Trying to connect to a database at " + connectionString);
-	getUserFromDb(id, function (error, result) {
+	getUserFromDb(id, username, password, function (error, result) {
 		if (error || result == null || result.length != 1) {
 			res.status(500).json({success:false, data:error});
 		} else {
