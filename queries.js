@@ -47,7 +47,7 @@ getUserRooms: function getUserRooms(req, res) {
 },
 
 // Get the users of a chat room
-function getChatUsers(req, res) {
+getChatUsers: function getChatUsers(req, res) {
 	console.log("Getting Users of a Chat Room " + req.query.id);
 	var id = req.query.id;
 	console.log("Trying to connect to a database at " + connectionString);
