@@ -1,4 +1,4 @@
-modules.exports = {
+module.exports = {
 // Get a user
 getUser: function getUser(req, res) {
 	console.log("Getting User " + req.query.id);
