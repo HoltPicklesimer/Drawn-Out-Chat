@@ -14,11 +14,10 @@ postUser: function postUser(req, res) {
 		if (error || result == null || result.length != 1) {
 			res.status(500).json({success:false, data:error});
 		} else {
-			// var user = result[0];
-			// res.status(200).json(result[0]);
+			var user = result[0];
+			res.status(200).json(result[0]);
 		}
 	});
-	res.end();
 }
 
 }
