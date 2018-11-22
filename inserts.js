@@ -6,8 +6,8 @@ const pool = new Pool({connectionString: connectionString});
 module.exports = {
 // Get a user
 postUser: function postUser(req, res) {
-	var username = req.query.username;
-	var password = req.query.password;
+	var username = req.body.username;
+	var password = req.body.password;
 	console.log("Inserting User " + username);
 	console.log("Trying to connect to a database at " + connectionString);
 	insertUserIntoDb(username, password, function (error, result) {
