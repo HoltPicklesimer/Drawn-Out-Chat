@@ -32,3 +32,6 @@ app.get("/getChatUsers", selects.getChatUsers);
 app.get("/getComment", selects.getComment);
 app.get("/getRoomComments", selects.getRoomComments);
 app.post("/postUser", inserts.postUser);
+app.post("/postRoom", inserts.postRoom);
+app.post("/addUser", inserts.addUser);
+app.post("/postComment", inserts.postComment);

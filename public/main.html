@@ -34,7 +34,7 @@
 		<button type="submit" class="btn btn-success" value="Get User">
 			Find User
 		</button>
-	</form>
+	</form><br>
 	
 	<form action="/postUser" method="post">
 		Create a User:
@@ -45,7 +45,41 @@
 		<button type="submit" class="btn btn-success" value="Create User">
 			Insert User
 		</button>
-	</form>
+	</form><br>
+
+	<form action="/postRoom" method="post">
+		Create a New Chat Room:
+		<div>
+		Room Name: <input type="text" name="name" /><br/>
+		Id (This should be removed and replaced with a session variable id later): <input type="text" name="adminId" /><br/>
+		</div>
+		<button type="submit" class="btn btn-success" value="Create Room">
+			Insert Chat Room
+		</button>
+	</form><br>
+
+	<form action="/addUser" method="post">
+		Add a User to a Chat Room:
+		<div>
+		User Id: <input type="text" name="userId" /><br/>
+		Chat Room Id (will be replaced by another session variable): <input type="text" name="chatId" /><br/>
+		</div>
+		<button type="submit" class="btn btn-success" value="Add User">
+			Add User
+		</button>
+	</form><br>
+
+	<form action="/postComment" method="post">
+		Add a Comment to a Chat Room:
+		<div>
+		User Id (will be replaced by a session variable): <input type="text" name="userId" /><br/>
+		Chat Room Id (will be replaced by another session variable): <input type="text" name="chatId" /><br/>
+		Content: <input type="text" name="content" /><br/>
+		</div>
+		<button type="submit" class="btn btn-success" value="Create Comment">
+			Insert Comment
+		</button>
+	</form><br>
 
 	</div>
 </body>
