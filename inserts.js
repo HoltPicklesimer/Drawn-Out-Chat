@@ -14,8 +14,8 @@ postUser: function postUser(req, res) {
 		if (error || result == null || result.length != 1) {
 			res.status(500).json({success:false, data:error});
 		} else {
-			var user = result[0];
-			res.status(200).json(result[0]);
+			// var user = result[0];
+			// res.status(200).json(result[0]);
 		}
 	});
 }
@@ -41,8 +41,8 @@ function insertUserIntoDb(username, password, callback) {
 			callback(err, null);
 		}
 
-		console.log("Found result: " + JSON.stringify(result.rows));
+		// console.log("Found result: " + JSON.stringify(result.rows));
 
-		callback(null, result.rows);
+		// callback(null, result.rows);
 	});
 }
