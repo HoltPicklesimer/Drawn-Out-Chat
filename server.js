@@ -18,13 +18,14 @@ app.listen(app.get('port'), function(req, res){
 	console.log("Listening on port " + app.get('port'));
 });
 
-app.get("/", function(req, res) {
-	res.sendFile("main.html");
-});
+// Need to make this work
+// app.get("/", function(req, res) {
+// 	res.sendFile("main.html");
+// });
 app.get("/getUser", selects.getUser);
 app.get("/getChatRoom", selects.getChatRoom);
 app.get("/getUserRooms", selects.getUserRooms);
 app.get("/getChatUsers", selects.getChatUsers);
 app.get("/getComment", selects.getComment);
 app.get("/getRoomComments", selects.getRoomComments);
-app.get("/postUser", inserts.postUser);
+app.post("/postUser", inserts.postUser);
