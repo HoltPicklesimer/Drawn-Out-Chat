@@ -2,8 +2,6 @@
 const connectionString = process.env.DATABASE_URL;
 const { Pool } = require("pg");
 const pool = new Pool({connectionString: connectionString});
-app.use(express.json());       // to support JSON-encoded bodies
-app.use(express.urlencoded()); // to support URL-encoded bodies
 
 module.exports = {
 // Get a user
