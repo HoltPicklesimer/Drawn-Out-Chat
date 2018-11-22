@@ -19,6 +19,7 @@ getUser: function getUser(req, res) {
 			res.status(200).json(result[0]);
 		}
 	});
+	res.end();
 },
 
 // Get a chat room
@@ -49,6 +50,7 @@ getUserRooms: function getUserRooms(req, res) {
 			res.status(200).json(result);
 		}
 	});
+	res.end();
 },
 
 // Get the users of a chat room
@@ -64,6 +66,7 @@ getChatUsers: function getChatUsers(req, res) {
 			res.status(200).json(result);
 		}
 	});
+	res.end();
 },
 
 // Get a comment
@@ -79,6 +82,7 @@ getComment: function getComment(req, res) {
 			res.status(200).json(result[0]);
 		}
 	});
+	res.end();
 },
 
 // Get the comments in a chat room
@@ -94,6 +98,7 @@ getRoomComments: function getRoomComments(req, res) {
 			res.status(200).json(result);
 		}
 	});
+	res.end();
 }
 }
 
