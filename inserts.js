@@ -18,7 +18,7 @@ postUser: function postUser(req, res) {
 			// res.status(200).json(result[0]);
 		}
 	});
-	req.end();
+	res.end();
 }
 
 }
