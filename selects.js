@@ -35,6 +35,7 @@ getChatRoom: function getChatRoom(req, res) {
 			res.status(200).json(result[0]);
 		}
 	});
+	res.end();
 },
 
 // Get the chat rooms of a user
