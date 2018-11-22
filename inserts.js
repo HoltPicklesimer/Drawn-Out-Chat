@@ -16,6 +16,7 @@ postUser: function postUser(req, res) {
 		} else {
 			var user = result[0];
 			res.status(200).json(result[0]);
+			res.end();
 		}
 	});
 }
