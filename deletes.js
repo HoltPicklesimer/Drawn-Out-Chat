@@ -23,7 +23,7 @@ deleteComment: function deleteComment(req, res) {
 	var id = req.body.id;
 	console.log("Removing comment of id " + id);
 	console.log("Trying to connect to a database at " + connectionString);
-	removeUserInDb(id, function (error, result) {
+	deleteCommentFromDb(id, function (error, result) {
 		if (error || result == null || result.length != 1) {
 			res.status(500).json({success:false, data:error});
 		}
