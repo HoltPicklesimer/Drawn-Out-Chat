@@ -5,6 +5,7 @@ const path = require("path");
 const fs = require("fs");
 const selects = require("./selects");
 const inserts = require("./inserts");
+const updates = require("./updates");
 
 app.use(express.json());       // to support JSON-encoded bodies
 app.use(express.urlencoded()); // to support URL-encoded bodies
@@ -35,3 +36,4 @@ app.post("/postUser", inserts.postUser);
 app.post("/postRoom", inserts.postRoom);
 app.post("/addUser", inserts.addUser);
 app.post("/postComment", inserts.postComment);
+app.put("/putImage", updates.putImage);

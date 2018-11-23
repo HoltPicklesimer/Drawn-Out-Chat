@@ -51,7 +51,7 @@
 		Create a New Chat Room:
 		<div>
 		Room Name: <input type="text" name="name" /><br/>
-		Id (This should be removed and replaced with a session variable id later): <input type="text" name="adminId" /><br/>
+		User Id (This should be removed and replaced with a session variable id later): <input type="text" name="adminId" /><br/>
 		</div>
 		<button type="submit" class="btn btn-success" value="Create Room">
 			Insert Chat Room
@@ -78,6 +78,17 @@
 		</div>
 		<button type="submit" class="btn btn-success" value="Create Comment">
 			Insert Comment
+		</button>
+	</form><br>
+
+	<form action="/putImage" method="put">
+		Change the image data of a Chat Room:
+		<div>
+		Chat Room Id (will be replaced by a session variable): <input type="text" name="id" /><br/>
+		Data: <input type="text" name="imageData" /><br/>
+		</div>
+		<button type="submit" class="btn btn-success" value="Update Image">
+			Update Image
 		</button>
 	</form><br>
 

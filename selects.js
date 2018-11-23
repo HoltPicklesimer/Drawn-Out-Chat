@@ -221,7 +221,7 @@ function getCommentFromDb(id, callback) {
 
 // Get chat rooms of a user from the database
 function getRoomCommentsFromDb(id, callback) {
-	var sql = queries[5];
+	var sql = queries[6];
 	var params = [id];
 
 	console.log("Getting comments now, chat room id = " + id);
