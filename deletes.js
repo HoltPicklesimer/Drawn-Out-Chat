@@ -8,7 +8,7 @@ module.exports = {
 removeUserFromRoom: function removeUserFromRoom(req, res) {
 	var user_id = req.body.userId;
 	var chat_id = req.body.chatId;
-	console.log("Removing user of id " + user_id " from room with id " + chat_id);
+	console.log("Removing user of id " + user_id + " from room with id " + chat_id);
 	console.log("Trying to connect to a database at " + connectionString);
 	removeUserInDb(user_id, chat_id, function (error, result) {
 		if (error || result == null || result.length != 1) {
