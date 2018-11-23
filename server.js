@@ -36,4 +36,4 @@ app.post("/postUser", inserts.postUser);
 app.post("/postRoom", inserts.postRoom);
 app.post("/addUser", inserts.addUser);
 app.post("/postComment", inserts.postComment);
-app.put("/putImage", updates.putImage);
+app.post("/putImage", updates.putImage);
