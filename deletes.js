@@ -32,8 +32,8 @@ deleteComment: function deleteComment(req, res) {
 }
 
 var queries = [
-	"DELETE chat_users WHERE user_id = $1::int AND chat_id = $2::int",
-	"DELETE comments WHERE id = $1::int;"
+	"DELETE FROM chat_users WHERE user_id = $1::int AND chat_id = $2::int",
+	"DELETE FROM comments WHERE id = $1::int;"
 ];
 
 // Remove the user from the chat room in the database
