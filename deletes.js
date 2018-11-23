@@ -39,7 +39,7 @@ var queries = [
 // Remove the user from the chat room in the database
 function removeUserInDb(user_id, chat_id, callback) {
 	var sql = queries[0];
-	var params = [id, image_data];
+	var params = [user_id, chat_id];
 
 	console.log("Removing User From Chat Room Now...");
 
