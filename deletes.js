@@ -15,7 +15,6 @@ removeUserFromRoom: function removeUserFromRoom(req, res) {
 			res.status(500).json({success:false, data:error});
 		}
 	});
-	res.end();
 },
 
 // Delete a comment
@@ -28,7 +27,6 @@ deleteComment: function deleteComment(req, res) {
 			res.status(500).json({success:false, data:error});
 		}
 	});
-	res.end();
 }
 
 }
