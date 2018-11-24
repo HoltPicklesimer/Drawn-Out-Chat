@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Drawn-Out Chat</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Latest compiled and minified CSS for Bootstrap -->
+	<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	</script>
+
+	<!-- Latest compiled JavaScript for Bootstrap -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+	</script>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+	<!-- <link rel="stylesheet" href="stylesheets/main.css"> -->
+</head>
+
+<body onload="changeRange()">
+	<div id="canvas" onload="initialize()"></div>
+
+	<script type="text/javascript" src="paint.js"></script>
+
+	<button onclick="clearCanvas()">Clear</button>
+	<button onclick="changeToEraser()">Eraser</button>
+	<p>
+		Brush Size:
+		<button onclick="changeToSmall()">Small</button>
+		<button onclick="changeToMedium()">Medium</button>
+		<button onclick="changeToLarge()">Large</button>
+		<button onclick="changeToHuge()">Huge</button>
+	</p>
+
+	<table id="container">
+		<tr>
+			<th>Red</th>
+			<th>Green</th>
+			<th>Blue</th>
+		</tr>
+		<tr>
+			<td><input type="range" min="0" max="255" id="red" onchange="changeRange()" value="0"></td>
+			<td><input type="range" min="0" max="255" id="green" onchange="changeRange()" value="0"></td>
+			<td><input type="range" min="0" max="255" id="blue" onchange="changeRange()" value="0"></td>
+		</tr>
+		<tr>
+			<td id="red-label">0</td>
+			<td id="green-label">0</td>
+			<td id="blue-label">0</td>
+		</tr>
+		<h1 id="hex-label">#000000</h1>
+	</table>
+
+</body>
+</html>
