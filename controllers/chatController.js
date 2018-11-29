@@ -62,7 +62,7 @@ function addUser(req, res) {
 	var user_id = req.body.userId;
 	var chat_id = req.body.chatId;
 	console.log("Inserting User into chat room with user id = " + user_id + " into room with id " + chat_id);
-	addUserToRoomInDb(user_id, chat_id, function (error, result) {
+	chatModel.addUserToRoomInDb(user_id, chat_id, function (error, result) {
 		if (error) {
 			res.status(500).json({success:false, data:error});
 		} else {
