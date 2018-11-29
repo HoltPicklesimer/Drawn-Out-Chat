@@ -18,6 +18,7 @@ function getUser(req, res) {
 			res.status(200).json(result[0]);
 		}
 	});
+	res.end();
 }
 
 // Get a chat room
