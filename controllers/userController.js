@@ -3,7 +3,7 @@ const connectionString = process.env.DATABASE_URL;
 const { Pool } = require("pg");
 const pool = new Pool({connectionString: connectionString});
 
-const userModel = require("../models/userModel");
+// const userModel = require("../models/userModel");
 
 // Get a user
 function getUser(req, res) {
