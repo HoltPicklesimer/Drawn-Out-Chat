@@ -50,7 +50,7 @@ function getUserFromDbByInfo(username, password, callback) {
 
 // Get chat rooms of a user from the database
 function getUserRoomsFromDb(id, callback) {
-	var sql = queries[3];
+	var sql = queries[2];
 	var params = [id];
 
 	console.log("Getting chat rooms now, user id = " + id);
@@ -69,27 +69,21 @@ function getUserRoomsFromDb(id, callback) {
 	});
 }
 
-// Create a user
-function postUser(req, res) {
-	var username = req.body.username;
-	var password = req.body.password;
-	console.log("Inserting User " + username);
-	console.log("Trying to connect to a database at " + connectionString);
-	
-	insertUserIntoDb(username, password, function (error, result) {
-		if (error || result == null || result.length != 1) {
-			res.status(500).json({success:false, data:error});
+// Insert a user into the database
+function insertUserIntoDb(username, password, callback) {
+	var sql = queries[3];
+	var params = [username, password];
+
+	pool.query(sql, params, function(err, result){
+
+		if (err) {
+			console.log("Error in query: ");
+			console.log(err);
+			callback(err, null);
 		}
-		else
-		{
-			console.log("Wanting to add: " + req.body.username);
-			var result = { status: "success"
-									 , entity: {username:username, password:password}
-									 };
-			res.json(result);
-		}
+
+		callback(null, result.rows);
 	});
-	res.end();
 }
 
-module.exports = { getUserFromDbById:getUserFromDbById, getUserFromDbByInfo:getUserFromDbByInfo, getUserRoomsFromDb:getUserRoomsFromDb, postUser:postUser };
+module.exports = { getUserFromDbById:getUserFromDbById, getUserFromDbByInfo:getUserFromDbByInfo, getUserRoomsFromDb:getUserRoomsFromDb, insertUserIntoDb:insertUserIntoDb };

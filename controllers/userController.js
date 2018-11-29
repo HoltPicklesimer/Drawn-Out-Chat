@@ -4,7 +4,7 @@ const userModel = require("../models/userModel.js");
 function getUserById(req, res) {
 	var id = req.query.id;
 	console.log("Getting User with id " + id);
-	userModel.getUserFromDbById(id, username, password, function (error, result) {
+	userModel.getUserFromDbById(id, function (error, result) {
 		if (error || result == null || result.length != 1) {
 			res.status(500).json({success:false, data:error});
 		} else {
@@ -20,7 +20,7 @@ function getUserByInfo(req, res) {
 	var username = req.query.username;
 	var password = req.query.password;
 	console.log("Getting User with username " + username + " and password " + password);
-	userModel.getUserFromDbByInfo(id, username, password, function (error, result) {
+	userModel.getUserFromDbByInfo(username, password, function (error, result) {
 		if (error || result == null || result.length != 1) {
 			res.status(500).json({success:false, data:error});
 		} else {
