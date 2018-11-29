@@ -82,7 +82,7 @@ function insertRoomIntoDb(name, admin_id, callback) {
 			console.log(err);
 			callback(err, null);
 		}else{
-			console.log("Chat Room successfully added with name " + username + " by admin with id " + admin_id);
+			console.log("Chat Room successfully added with name " + name + " by admin with id " + admin_id);
 			callback(null);
 		}
 
