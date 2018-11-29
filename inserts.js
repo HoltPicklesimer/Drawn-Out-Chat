@@ -3,6 +3,8 @@ const connectionString = process.env.DATABASE_URL;
 const { Pool } = require("pg");
 const pool = new Pool({connectionString: connectionString});
 
+// Get the models
+const deletes = require("./deletes");
 
 // Create a user
 function postUser(req, res) {
@@ -23,7 +25,6 @@ function postUser(req, res) {
 							 };
 	res.json(result);
 		}
-		res.end();
 	});
 }
 
@@ -94,6 +95,8 @@ function insertUserIntoDb(username, password, callback) {
 			console.log(err);
 			callback(err, null);
 		}
+
+		callback(null, result.rows);
 	});
 }
 

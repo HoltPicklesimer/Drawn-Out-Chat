@@ -8,6 +8,10 @@ const inserts = require("./inserts");
 const updates = require("./updates");
 const deletes = require("./deletes");
 
+const userController = require("./controllers/userController");
+const chatController = require("./controllers/chatController");
+const commentController = require("./controllers/commentController");
+
 app.use(express.json());       // to support JSON-encoded bodies
 app.use(express.urlencoded()); // to support URL-encoded bodies
 
