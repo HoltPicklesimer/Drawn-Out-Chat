@@ -60,4 +60,4 @@ function postUser(req, res) {
 	res.end();
 }
 
-module.exports = { getUser:getUser, getUserByInfo:getUserByInfo, getUserRooms:getUserRooms, postUser:postUser };
+module.exports = { getUserById:getUserById, getUserByInfo:getUserByInfo, getUserRooms:getUserRooms, postUser:postUser };
