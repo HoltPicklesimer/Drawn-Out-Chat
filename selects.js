@@ -59,7 +59,7 @@ function getChatUsers(req, res) {
 		if (error || result == null) {
 			res.status(500).json({success:false, data:error});
 		} else {
-			var rooms = result;
+			var users = result;
 			res.status(200).json(result);
 		}
 	});
@@ -74,7 +74,7 @@ function getComment(req, res) {
 		if (error || result == null || result.length != 1) {
 			res.status(500).json({success:false, data:error});
 		} else {
-			var room = result[0];
+			var comment = result[0];
 			res.status(200).json(result[0]);
 		}
 	});
@@ -89,7 +89,7 @@ function getRoomComments(req, res) {
 		if (error || result == null) {
 			res.status(500).json({success:false, data:error});
 		} else {
-			var rooms = result;
+			var comments = result;
 			res.status(200).json(result);
 		}
 	});
