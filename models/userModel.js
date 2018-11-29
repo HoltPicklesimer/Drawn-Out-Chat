@@ -81,10 +81,12 @@ function insertUserIntoDb(username, password, callback) {
 			console.log(err);
 			callback(err, null);
 		}
-
-		console.log("Found result: " + JSON.stringify(result.rows));
-
-		callback(null, result.rows);
+		else
+		{
+			console.log("Found result: " + JSON.stringify(result.rows));
+			callback(null, result.rows);
+		}
+		
 	});
 }
 
