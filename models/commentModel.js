@@ -71,3 +71,5 @@ function deleteCommentFromDb(id, callback) {
 
 	});
 }
+
+module.exports = { getCommentFromDb:getCommentFromDb, insertCommentIntoDb:insertCommentIntoDb, deleteCommentFromDb:deleteCommentFromDb };

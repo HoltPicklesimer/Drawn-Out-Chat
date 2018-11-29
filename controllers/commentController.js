@@ -43,3 +43,5 @@ function deleteComment(req, res) {
 		}
 	});
 }
+
+module.exports = { getComment:getComment, postComment:postComment, deleteComment:deleteComment };
