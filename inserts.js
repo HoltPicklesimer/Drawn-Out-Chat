@@ -10,17 +10,21 @@ function postUser(req, res) {
 	var password = req.body.password;
 	console.log("Inserting User " + username);
 	console.log("Trying to connect to a database at " + connectionString);
-	console.log("Wanting to add: " + req.body.username);
-	var result = { status: "success"
-							 , entity: {username:username, password:password}
-							 };
-	res.json(result);
+	
 	insertUserIntoDb(username, password, function (error, result) {
 		if (error || result == null || result.length != 1) {
 			res.status(500).json({success:false, data:error});
 		}
+		else
+		{
+			console.log("Wanting to add: " + req.body.username);
+	var result = { status: "success"
+							 , entity: {username:username, password:password}
+							 };
+	res.json(result);
+		}
+		res.end();
 	});
-	res.end();
 }
 
 // Create a chat room
