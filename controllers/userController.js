@@ -50,7 +50,7 @@ function postUser(req, res) {
 	console.log("Inserting User " + username + " with password " + password);
 	
 	userModel.insertUserIntoDb(username, password, function (error, result) {
-		if (error || result == null || result.length != 1) {
+		if (error) {
 			res.status(500).json({success:false, data:error});
 		} else {
 			res.status(200).json(result);
