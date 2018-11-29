@@ -46,13 +46,13 @@ app.listen(app.get('port'), function(req, res){
 // app.post("/deleteComment", deletes.deleteComment);
 
 app.get("/getUserById", userController.getUserById)
-		get("/getUserByInfo", userController.getUserByInfo)
-		get("/getUserRooms", userController.getUserRooms)
-		post("/postUser", userController.postUser)
-		get("/getChatRoom", chatController.getChatRoom)
-		get("/getChatUsers", chatController.getChatUsers)
-		get("/getRoomComments", chatController.getRoomComments)
-		post("/postRoom", chatController.postRoom)
-		post("/addUser", chatController.addUser)
-		post("/putImage", chatController.putImage)
-		post("/removeUserFromRoom", chatController.removeUserFromRoom);
+		.get("/getUserByInfo", userController.getUserByInfo)
+		.get("/getUserRooms", userController.getUserRooms)
+		.post("/postUser", userController.postUser)
+		.get("/getChatRoom", chatController.getChatRoom)
+		.get("/getChatUsers", chatController.getChatUsers)
+		.get("/getRoomComments", chatController.getRoomComments)
+		.post("/postRoom", chatController.postRoom)
+		.post("/addUser", chatController.addUser)
+		.post("/putImage", chatController.putImage)
+		.post("/removeUserFromRoom", chatController.removeUserFromRoom);
