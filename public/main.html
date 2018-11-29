@@ -30,10 +30,19 @@
 
 	<h2>Read Endpoints</h2>
 
-	<form action="/getUser" method="get">
+	<form action="/getUserById" method="get">
 		Find a User (you can do this with either id or username and password):
 		<div>
 		ID: <input type="text" name="id" /><br/>
+		</div>
+		<button type="submit" class="btn btn-success" value="Get User">
+			Find User
+		</button>
+	</form><br>
+
+	<form action="/getUserByInfo" method="get">
+		Find a User (you can do this with either id or username and password):
+		<div>
 		Username: <input type="text" name="username" /><br/>
 		Password: <input type="text" name="password" /><br/>
 		</div>
