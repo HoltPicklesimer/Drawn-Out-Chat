@@ -56,6 +56,6 @@ app.get("/getUserById", userController.getUserById)
 		.post("/addUser", chatController.addUser)
 		.post("/putImage", chatController.putImage)
 		.post("/removeUserFromRoom", chatController.removeUserFromRoom)
-		.post("/getComment", commentController.getComment)
+		.get("/getComment", commentController.getComment)
 		.post("/postComment", commentController.postComment)
 		.post("/deleteComment", commentController.deleteComment);
