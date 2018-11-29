@@ -25,7 +25,6 @@ function postUser(req, res) {
 			res.json(result);
 		}
 	});
-	res.end();
 }
 
 // Create a chat room
