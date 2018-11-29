@@ -21,7 +21,7 @@ function postComment(req, res) {
 	var content = req.body.content;
 	console.log("Inserting comment from user with id " + user_id + " into room with id " + chat_id);
 	commentModel.insertCommentIntoDb(chat_id, user_id, content, function (error, result) {
-		if (error || result == null || result.length != 1) {
+		if (error) {
 			res.status(500).json({success:false, data:error});
 		} else {
 			result = { success:true, comment: { chat_id:chat_id, user_id:user_id, content:content } };
@@ -35,7 +35,7 @@ function deleteComment(req, res) {
 	var id = req.body.id;
 	console.log("Removing comment of id " + id);
 	commentModel.deleteCommentFromDb(id, function (error, result) {
-		if (error || result == null || result.length != 1) {
+		if (error) {
 			res.status(500).json({success:false, data:error});
 		} else {
 			result = { success:true, commentDeleted: { id:id } };
