@@ -82,6 +82,8 @@ function insertUserIntoDb(username, password, callback) {
 			callback(err, null);
 		}
 
+		console.log("Found result: " + JSON.stringify(result.rows));
+
 		callback(null, result.rows);
 	});
 }

@@ -48,14 +48,14 @@ function postUser(req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
 	console.log("Inserting User " + username + " with password " + password);
-	console.log("Trying to connect to a database at " + connectionString);
 	
 	userModel.insertUserIntoDb(username, password, function (error, result) {
 		if (error || result == null || result.length != 1) {
 			res.status(500).json({success:false, data:error});
+		} else {
+			res.status(200).json(result);
 		}
 	});
-	res.end();
 }
 
 module.exports = { getUserById:getUserById, getUserByInfo:getUserByInfo, getUserRooms:getUserRooms, postUser:postUser };
