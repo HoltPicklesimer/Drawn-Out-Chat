@@ -12,7 +12,6 @@ function getUserById(req, res) {
 			res.status(200).json(result[0]);
 		}
 	});
-	res.end();
 }
 
 // Get a user by username and password
@@ -28,7 +27,6 @@ function getUserByInfo(req, res) {
 			res.status(200).json(result[0]);
 		}
 	});
-	res.end();
 }
 
 // Get the chat rooms of a user
