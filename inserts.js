@@ -23,6 +23,7 @@ function postUser(req, res) {
 									 };
 
 			res.json(result);
+			res.end();
 		}
 	});
 }
