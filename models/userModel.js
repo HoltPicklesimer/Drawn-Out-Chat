@@ -80,9 +80,7 @@ function insertUserIntoDb(username, password, callback) {
 			console.log("Error in query: ");
 			console.log(err);
 			callback(err, null);
-		}
-		else
-		{
+		}else{
 			console.log("User successfully added with username " + username + " and password " + password);
 			callback(null);
 		}

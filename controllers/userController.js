@@ -53,7 +53,7 @@ function postUser(req, res) {
 		if (error) {
 			res.status(500).json({success:false, data:error});
 		} else {
-			result = { success:true, entity: {username:username, password:password } };
+			result = { success:true, newUser: {username:username, password:password } };
 			res.status(200).json(result);
 		}
 	});
