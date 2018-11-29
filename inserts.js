@@ -3,9 +3,9 @@ const connectionString = process.env.DATABASE_URL;
 const { Pool } = require("pg");
 const pool = new Pool({connectionString: connectionString});
 
-module.exports = {
+
 // Create a user
-postUser: function postUser(req, res) {
+function postUser(req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
 	console.log("Inserting User " + username);
@@ -16,10 +16,10 @@ postUser: function postUser(req, res) {
 		}
 	});
 	res.end();
-},
+}
 
 // Create a chat room
-postRoom: function postRoom(req, res) {
+function postRoom(req, res) {
 	var name = req.body.name;
 	var admin_id = req.body.adminId;
 	console.log("Inserting Chat Room " + name);
@@ -30,10 +30,10 @@ postRoom: function postRoom(req, res) {
 		}
 	});
 	res.end();
-},
+}
 
 // Add a user to a chat room
-addUser: function addUser(req, res) {
+function addUser(req, res) {
 	var user_id = req.body.userId;
 	var chat_id = req.body.chatId;
 	console.log("Inserting User into chat room " + user_id + " into " + chat_id);
@@ -44,10 +44,10 @@ addUser: function addUser(req, res) {
 		}
 	});
 	res.end();
-},
+}
 
 // Create a comment
-postComment: function postComment(req, res) {
+function postComment(req, res) {
 	var chat_id = req.body.chatId;
 	var user_id = req.body.userId;
 	var content = req.body.content;
@@ -61,7 +61,7 @@ postComment: function postComment(req, res) {
 	res.end();
 }
 
-}
+module.exports = { postUser:postUser, postRoom:postRoom, addUser:addUser, postComment:postComment };
 
 var queries = [
 	"INSERT INTO users (username, password) VALUES ($1::varchar, $2::varchar)",

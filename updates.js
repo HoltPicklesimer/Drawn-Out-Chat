@@ -3,9 +3,8 @@ const connectionString = process.env.DATABASE_URL;
 const { Pool } = require("pg");
 const pool = new Pool({connectionString: connectionString});
 
-module.exports = {
 // Update an image of a chat room
-putImage: function putImage(req, res) {
+function putImage(req, res) {
 	var id = req.body.id;
 	var image_data = req.body.imageData;
 	console.log("Updating image of chat room with index " + id);
@@ -18,7 +17,7 @@ putImage: function putImage(req, res) {
 	res.end();
 }
 
-}
+module.exports = { putImage:putImage };
 
 var queries = [
 	"UPDATE chat_rooms SET image_data = $2::text WHERE id = $1::int"

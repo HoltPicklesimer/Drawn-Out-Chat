@@ -3,9 +3,8 @@ const connectionString = process.env.DATABASE_URL;
 const { Pool } = require("pg");
 const pool = new Pool({connectionString: connectionString});
 
-module.exports = {
 // Get a user
-getUser: function getUser(req, res) {
+function getUser(req, res) {
 	console.log("Getting User " + req.query.id);
 	var id = req.query.id;
 	var username = req.query.username;
@@ -19,10 +18,10 @@ getUser: function getUser(req, res) {
 			res.status(200).json(result[0]);
 		}
 	});
-},
+}
 
 // Get a chat room
-getChatRoom: function getChatRoom(req, res) {
+function getChatRoom(req, res) {
 	console.log("Getting Chat Room " + req.query.id);
 	var id = req.query.id;
 	console.log("Trying to connect to a database at " + connectionString);
@@ -34,10 +33,10 @@ getChatRoom: function getChatRoom(req, res) {
 			res.status(200).json(result[0]);
 		}
 	});
-},
+}
 
 // Get the chat rooms of a user
-getUserRooms: function getUserRooms(req, res) {
+function getUserRooms(req, res) {
 	console.log("Getting Chat Rooms of User " + req.query.id);
 	var id = req.query.id;
 	console.log("Trying to connect to a database at " + connectionString);
@@ -49,10 +48,10 @@ getUserRooms: function getUserRooms(req, res) {
 			res.status(200).json(result);
 		}
 	});
-},
+}
 
 // Get the users of a chat room
-getChatUsers: function getChatUsers(req, res) {
+function getChatUsers(req, res) {
 	console.log("Getting Users of a Chat Room " + req.query.id);
 	var id = req.query.id;
 	console.log("Trying to connect to a database at " + connectionString);
@@ -64,10 +63,10 @@ getChatUsers: function getChatUsers(req, res) {
 			res.status(200).json(result);
 		}
 	});
-},
+}
 
 // Get a comment
-getComment: function getComment(req, res) {
+function getComment(req, res) {
 	console.log("Getting Comment " + req.query.id);
 	var id = req.query.id;
 	console.log("Trying to connect to a database at " + connectionString);
@@ -79,10 +78,10 @@ getComment: function getComment(req, res) {
 			res.status(200).json(result[0]);
 		}
 	});
-},
+}
 
 // Get the comments in a chat room
-getRoomComments: function getRoomComments(req, res) {
+function getRoomComments(req, res) {
 	console.log("Getting Comments of Chat Room " + req.query.id);
 	var id = req.query.id;
 	console.log("Trying to connect to a database at " + connectionString);
@@ -95,7 +94,9 @@ getRoomComments: function getRoomComments(req, res) {
 		}
 	});
 }
-}
+
+module.exports = { getUser:getUser, getChatRoom:getChatRoom, getUserRooms:getUserRooms,
+									 getChatUsers:getChatUsers, getComment:getComment, getRoomComments:getRoomComments };
 
 var queries = [
 	"SELECT id, username, password FROM users WHERE id = $1::int",

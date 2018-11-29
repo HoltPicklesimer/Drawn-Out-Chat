@@ -12,7 +12,7 @@ app.use(express.json());       // to support JSON-encoded bodies
 app.use(express.urlencoded()); // to support URL-encoded bodies
 
 // Set up the static and views directories
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.set("views", path.join(__dirname, 'views'));
 
 // Set the port
