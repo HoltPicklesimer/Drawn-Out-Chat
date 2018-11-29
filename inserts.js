@@ -13,11 +13,6 @@ function postUser(req, res) {
 	insertUserIntoDb(username, password, function (error, result) {
 		if (error || result == null || result.length != 1) {
 			res.status(500).json({success:false, data:error});
-		} else {
-			var result = {status: "success"
-							, entity: {id:6, name:"Dr. Pepper"}
-							 };
-			res.json(result);
 		}
 	});
 	res.end();
@@ -81,7 +76,7 @@ function insertUserIntoDb(username, password, callback) {
 	var sql = queries[0];
 	var params = [username, password];
 
-	console.log("Inserting user now...");
+	console.log("Inserting user "  + req.body.username + "with password " + req.body.password);
 
 	pool.query(sql, params, function(err, result){
 
