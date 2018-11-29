@@ -69,4 +69,27 @@ function getUserRoomsFromDb(id, callback) {
 	});
 }
 
-module.exports = { getUserFromDbById:getUserFromDbById, getUserFromDbByInfo:getUserFromDbByInfo, getUserRoomsFromDb:getUserRoomsFromDb, postUserIntoDb:postUserIntoDb };
+// Create a user
+function postUser(req, res) {
+	var username = req.body.username;
+	var password = req.body.password;
+	console.log("Inserting User " + username);
+	console.log("Trying to connect to a database at " + connectionString);
+	
+	insertUserIntoDb(username, password, function (error, result) {
+		if (error || result == null || result.length != 1) {
+			res.status(500).json({success:false, data:error});
+		}
+		else
+		{
+			console.log("Wanting to add: " + req.body.username);
+			var result = { status: "success"
+									 , entity: {username:username, password:password}
+									 };
+			res.json(result);
+		}
+	});
+	res.end();
+}
+
+module.exports = { getUserFromDbById:getUserFromDbById, getUserFromDbByInfo:getUserFromDbByInfo, getUserRoomsFromDb:getUserRoomsFromDb, postUser:postUser };
