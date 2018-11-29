@@ -78,7 +78,7 @@ function putImage(req, res) {
 	var image_data = req.body.imageData;
 	console.log("Updating image of chat room with id " + id);
 	chatModel.updateImageInDb(id, image_data, function (error, result) {
-		if (error || result == null || result.length != 1) {
+		if (error) {
 			res.status(500).json({success:false, data:error});
 		} else {
 			result = { success:true, updatedRoomImage: { id:id, image_data:image_data } };
@@ -93,7 +93,7 @@ function removeUserFromRoom(req, res) {
 	var chat_id = req.body.chatId;
 	console.log("Removing user of id " + user_id + " from room with id " + chat_id);
 	chatModel.removeUserInDb(user_id, chat_id, function (error, result) {
-		if (error || result == null || result.length != 1) {
+		if (error) {
 			res.status(500).json({success:false, data:error});
 		} else {
 			result = { success:true, removedUserFromRoom: { user_id:user_id, chat_id:chat_id } };
