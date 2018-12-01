@@ -198,7 +198,7 @@ function addComment() {
 		if (status == "success")
 		{
 			console.log("Posted comment to room with id " + chat_id);
-			$("#commentBox").empty();
+			$("#commentBox").val('');
 		}
 	});
 }
