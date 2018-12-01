@@ -173,6 +173,24 @@ function clearUserSearch() {
 		$("#searchedUsers").empty();
 }
 
+/* When a user adds a comment to the Chat room */
+function addComment() {
+	// Get the comment
+	var data = $("#commentBox").val();
+
+	if (data == "")
+		return;
+
+	// Set up the parameters to send to the Controller
+	var params = { chatId:chat_id, userId:user_id, content:data };
+
+	$.post(url + "postComment", params, function(data, status){
+		console.log(status);
+		if (status == "success")
+			console.log("Posted comment to room with id " + chat_id);
+	});
+}
+
 // function search() {
 // 	// Get the value from the search box
 // 	var searchString = $("#txtSearch").val();
