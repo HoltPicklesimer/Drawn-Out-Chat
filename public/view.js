@@ -1,4 +1,4 @@
-var user_id = 12;
+var user_id = 13;
 var chat_id = 4;
 
 var url = "https://gentle-tundra-31449.herokuapp.com/";
@@ -38,6 +38,7 @@ function loadRoom() {
 			setAdminName(data.admin_id);
 			if (user_id != data.admin_id)
 				$("#addUserDiv").empty();
+			loadImage(data.image_data);
 		}
 	});
 }
@@ -52,6 +53,17 @@ function setAdminName(id) {
 			$("#admin").html(data.username);
 		}
 	});
+}
+
+function loadImage(data) {
+	var image = JSON.parse(data);
+	context.clearRect(0,0,context.canvas.width,context.canvas.height);
+	clickX = image.clickX;
+  clickY = image.clickY;
+  clickDrag = image.clickDrag;
+  clickColor = image.clickColor;
+  clickSize = image.clickSize;
+  redraw();
 }
 
 // function search() {
