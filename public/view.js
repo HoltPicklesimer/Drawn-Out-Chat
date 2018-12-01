@@ -81,7 +81,17 @@ function loadImage(data) {
 }
 
 function update() {
-	loadImage();
+	// update the image
+	var params = { id:chat_id };
+	$.get(url + "getChatRoom", params, function(data, status){
+		console.log(status);
+		console.log("Getting Room data from room with id " + chat_id);
+		if (status == "success")
+		{
+			console.log(data);
+			loadImage(data.image_data);
+		}
+	});
 }
 
 // function search() {
