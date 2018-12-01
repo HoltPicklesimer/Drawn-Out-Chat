@@ -13,8 +13,9 @@ function saveImage() {
 
 	// Use jQuery to make the get request
 	$.post(url + "putImage", params, function(data, status){
-		console.log("Posted image data to room with id " + chat_id);
 		console.log(status);
+		if (status == 200)
+			console.log("Posted image data to room with id " + chat_id);
 	});
 }
 
@@ -30,9 +31,13 @@ function loadRoom() {
 
 	// Use jQuery to make the get request
 	$.get(url + "getChatRoom", params, function(data, status){
-		console.log("Getting Room data from room with id " + chat_id);
-		console.log(data);
 		console.log(status);
+		console.log("Getting Room data from room with id " + chat_id);
+		if (status == 200)
+		{
+			console.log(data);
+			$("#chatName").value = data.name;
+		}
 	});
 }
 
