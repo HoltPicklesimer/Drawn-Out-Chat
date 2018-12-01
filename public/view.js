@@ -83,6 +83,18 @@ function loadImage(data) {
   redraw();
 }
 
+function loadComments(id) {
+	var params = { id:chat_id };
+	$.get(url + "getRoomComments", params, function(data, status){
+		console.log(status);
+		console.log("Getting Room comments from room with id " + chat_id);
+		if (status == "success")
+		{
+			console.log(data);
+		}
+	});
+}
+
 function update() {
 	// update the image
 	var params = { id:chat_id };
