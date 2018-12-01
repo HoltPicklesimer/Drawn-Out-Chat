@@ -56,19 +56,6 @@ function loadRoom() {
 	});
 }
 
-/* Part of the set-up for initialzing a chat room. */
-function setAdminName(id) {
-	var params = { id:id };
-	$.get(url + "getUserById", params, function(data, status){
-		console.log(status);
-		if (status == "success")
-		{
-			console.log("Getting user with id " + id);
-			
-		}
-	});
-}
-
 /* Load the image data passed as a parameter. */
 function loadImage(data) {
 	var image = JSON.parse(data);
@@ -100,7 +87,7 @@ function loadComments(id) {
 				var dateString = date.toLocaleDateString("en-US", options);
 				$("#commentSection").append("<hr style='width:90%' />");
 				$("#commentSection").append("<button class='btn btn-danger' onclick='removeComment(\'id_1\')'>-</button>");
-				$("#commentSection").append(" " + data[i].user_id + " said on " + dateString + "<br/><br/>");
+				$("#commentSection").append(" " + data[i].username + " said on " + dateString + "<br/><br/>");
 				$("#commentSection").append("<p style='width: 75%;padding: 0px 60px'>" + data[i].content + "</p>");
 			}
 		}
