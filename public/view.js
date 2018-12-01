@@ -2,9 +2,14 @@ var user_id = 13;
 var chat_id;
 var isAdmin = false;
 
-$(function(){ setInterval(loadComments, 1000);}); // set a clock to update every second to reload the comments
+$(function(){ setInterval(updateOnTimer, 1000);}); // set a clock to update every second to reload the comments
 
 var url = "https://gentle-tundra-31449.herokuapp.com/";
+
+function updateOnTimer() {
+	loadComments();
+	loadRoomUsers();
+}
 
 /* When a user adds a change to the image, save it to the database */
 function saveImage() {
@@ -33,9 +38,11 @@ function loadUser () {
 			$("#user").html(data.username);
 		}
 	});
+}
 
+function loadUserRooms() {
 	// load the rooms the user is a member of
-	params = { id:user_id };
+	var params = { id:user_id };
 	$.get(url + "getUserRooms", params, function(data, status){
 		console.log(status);
 		if (status == "success")
@@ -187,7 +194,10 @@ function addComment() {
 	$.post(url + "postComment", params, function(data, status){
 		console.log(status);
 		if (status == "success")
+		{
 			console.log("Posted comment to room with id " + chat_id);
+			$("#commentBox").empty();
+		}
 	});
 }
 
