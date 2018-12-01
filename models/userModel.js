@@ -8,7 +8,7 @@ var queries = [
 	"SELECT id, username, password FROM users WHERE username = $1::varchar AND password = $2::varchar",
 	"SELECT c.id, c.name, c.admin_id, c.image_data FROM chat_rooms c JOIN chat_users cu ON c.id = cu.chat_id JOIN users u ON u.id = cu.user_id WHERE u.id = $1::int",
 	"INSERT INTO users (username, password) VALUES ($1::varchar, $2::varchar)",
-	"SELECT id, username FROM users WHERE username LIKE ''%$1::varchar%''"
+	"SELECT id, username FROM users WHERE UPPER(username) LIKE ('%' + UPPER($1::varchar) + '%')"
 ];
 
 // Get a user from the database by id
