@@ -1,7 +1,7 @@
 var user_id = 13;
 var chat_id = 4;
 
-$(function(){ setInterval(oneSecondFunction, 1000);}); // set a clock to update the image every second
+$(function(){ setInterval(update, 1000);}); // set a clock to update every second
 
 var url = "https://gentle-tundra-31449.herokuapp.com/";
 
@@ -80,8 +80,8 @@ function loadImage(data) {
   redraw();
 }
 
-function oneSecondFunction() {
-	// stuff you want to do every second
+function update() {
+	loadImage();
 }
 
 // function search() {
