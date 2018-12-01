@@ -138,6 +138,11 @@ function searchUsers() {
 	});
 }
 
+/* Clear the users when focus is lost on the search bar */
+function clearUserSearch() {
+	$("#searchedUsers").empty();
+}
+
 // function search() {
 // 	// Get the value from the search box
 // 	var searchString = $("#txtSearch").val();
