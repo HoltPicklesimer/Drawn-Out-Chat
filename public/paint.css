@@ -1,0 +1,55 @@
+.clear {
+	background-color: lightgray;
+	color: red;
+	border: 1px solid red;
+}
+
+.eraser {
+	background-color: salmon;
+}
+
+.small {
+	background-color: lightgreen;
+}
+
+.medium {
+	background-color: yellow;
+}
+
+.large {
+	background-color: orange;
+}
+
+.huge {
+	background-color: orangered;
+}
+
+.right-col {
+	padding: 0px 10px;
+}
+
+#brushSizes {
+	border: 1px solid black;
+	padding: 15px;
+	border-radius: 30px;
+	background-color: lightblue;
+}
+
+#chatName {
+	padding: 0px 30px;
+}
+
+#commentSection {
+	padding: 30px;
+}
+
+#commentForm {
+	border: 1px solid black;
+	border-radius: 25px;
+	background-color: lightgray;
+	padding: 15px;
+}
+
+#searchedUsers {
+	padding:0px 10px;
+}
