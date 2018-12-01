@@ -1,7 +1,7 @@
 // Create the Canvas
-canvasDiv = document.getElementById('canvas');
+canvasDiv = document.getElementById('canvasDiv');
 var canvas = document.createElement('canvas');
-canvas.setAttribute('width', '1000');
+canvas.setAttribute('width', '950');
 canvas.setAttribute('height', '500');
 canvas.style.backgroundColor = "#ffffff";
 canvas.style.border = "1px solid black";
@@ -20,30 +20,35 @@ var paint;
 var curColor = "ffffff";
 var curSize = 5;
 
+var addX = 15;
+var addY = -62;
+
+/* The added values account for padding and other elements. */
+
 // Set Paint to true if the mouse is down
-$('#canvas').mousedown(function(e){
+$('#canvasDiv').mousedown(function(e){
 	var mouseX = e.pageX-this.offsetLeft;
 	var mouseY = e.pageY-this.offsetTop;
 
 	paint = true;
-	addClick(e.pageX-this.offsetLeft,e.pageY-this.offsetTop);
+	addClick(e.pageX-this.offsetLeft+addX,e.pageY-this.offsetTop+addY);
 	redraw();
 });
 
 // Add Clicks/Marks to the Canvas if paint is true
-$("#canvas").mousemove(function(e){
+$("#canvasDiv").mousemove(function(e){
 	if (paint){
-		addClick(e.pageX-this.offsetLeft,e.pageY-this.offsetTop,true);
+		addClick(e.pageX-this.offsetLeft+addX,e.pageY-this.offsetTop+addY,true);
 		redraw();
 	}
 });
 
 // If the mouse is up or is not on the Canvas, paint is set to false
-$("#canvas").mouseup(function(e){
+$("#canvasDiv").mouseup(function(e){
 	paint = false;
 });
 
-$("#canvas").mouseleave(function(e){
+$("#canvasDiv").mouseleave(function(e){
 	paint = false;
 });
 
@@ -140,3 +145,13 @@ function changeToEraser() {
 
 	changeRange();
 }
+
+// Send image data to the view
+function saveImage() {
+	// Save the image data to the database
+	var imageData = { clickX:clickX, clickY:clickY, clickDrag:clickDrag,
+										clickColor:clickColor, clickSize:clickSize };
+	return imageData;
+}
+
+module.exports = { saveImage:saveImage };

@@ -20,24 +20,41 @@
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 
-	<!-- <link rel="stylesheet" href="stylesheets/main.css"> -->
+	<link rel="stylesheet" href="paint.css">
+
+	<script type="text/javascript" src="view.js"></script>
 </head>
 
 <body onload="changeRange()">
-	<div id="canvas" onload="initialize()"></div>
+
+<h2 id="chatName">CHAT ROOM NAME</h2>
+
+<div class="row" style="width:99%"> <!-- 99% width removes the horizontal scrollbar -->
+
+<!-- The drawing portion of the screen -->
+<div class="col-sm-8" style="padding: 0px 30px">
+
+	<div id="canvasDiv" onload="initialize()" onmouseover="changeImage()"></div>
 
 	<script type="text/javascript" src="paint.js"></script>
 
-	<button onclick="clearCanvas()">Clear</button>
-	<button onclick="changeToEraser()">Eraser</button>
-	<p>
+	<button onclick="clearCanvas()" class="clear btn">Clear</button>
+	<button onclick="changeToEraser()" class="eraser btn">Eraser</button>
+	<span id="brushSizes">
 		Brush Size:
-		<button onclick="changeToSmall()">Small</button>
-		<button onclick="changeToMedium()">Medium</button>
-		<button onclick="changeToLarge()">Large</button>
-		<button onclick="changeToHuge()">Huge</button>
-	</p>
+		<button onclick="changeToSmall()" class="small btn">Small</button>
+		<button onclick="changeToMedium()" class="medium btn">Medium</button>
+		<button onclick="changeToLarge()" class="large btn">Large</button>
+		<button onclick="changeToHuge()" class="huge btn">Huge</button>
+	</span>
 
+	<div class="row">
+
+	<div class="col-sm-2">
+	<h3>Color:</h3>
+	</div>
+
+	<div class="col-sm-5">
 	<table id="container">
 		<tr>
 			<th>Red</th>
@@ -54,8 +71,54 @@
 			<td id="green-label">0</td>
 			<td id="blue-label">0</td>
 		</tr>
-		<h1 id="hex-label">#000000</h1>
+		<h3 id="hex-label">#000000</h3>
 	</table>
+	</div>
+
+	<div class="col-sm-5" id="commentForm">
+		<textarea id="commentBox" style="resize:none" class="form-control"></textarea><br/>
+		<button class="btn btn-info">Add Comment</button>
+	</div>
+
+</div>
+
+</div>
+
+<!-- The User Section of the Screen -->
+<div class="col-sm-4">
+	<h3 style="text-align: center">Select Chat Room</h3>
+	<select id="selectRoom" class="form-control" style="width:65%; margin: 0 auto" onchange="switchRoom()">
+		<option>CHAT_ROOM_1</option>
+		<option>CHAT_ROOM_2</option>
+	</select>
+
+	<h3 class="right-col"  style="text-align:center">Chat Room Info</h3>
+	<hr class="right-col" style="width:50%" />
+	<div class="right-col">Admin: <span id="admin">ADMIN_USERNAME</span></div>
+	<div>
+		<h4 class="right-col">Search Users to Add to Chat:</h4>
+		<input type="text" id="userSearch" class="form-control" onchange="searchUsers()" style="width:65%; margin: 0 auto" />
+		<br/>
+		<div id="searchedUsers">
+			<button class="btn btn-success" onclick="removeUser('id_1')">+</button> USERNAME_1
+		</div>
+	</div>
+	<hr style="width:65%" />
+	<div class="right-col">Users:
+		<div id="userList">
+			<button class="btn btn-danger" onclick="removeUser('id_1')">-</button> USERNAME_1<br/>
+		</div>
+	</div>
+</div>
+
+</div>
+
+<div id="commentSection">
+	<hr style="width:90%" />
+	<button class="btn btn-danger" onclick="removeComment('id_1')">-</button> <span>USERNAME_1</span> said on <span>November 30, 2018</span>
+	<br/><br/>
+	<p style="width: 75%;padding: 0px 60px">COMMENT CONTENTCOMMENT CONTENTCOMMENT CONTENTCOMMENT CONTENTCOMMENT CONTENTCOMMENT CONTENTCOMMENT CONTENTCOMMENT CONTENTCOMMENT CONTENTCOMMENT CONTENTCOMMENT CONTENTCOMMENT CONTENTCOMMENT CONTENTCOMMENT CONTENTCOMMENT CONTENTCOMMENT CONTENTCOMMENT CONTENT</p>
+</div>
 
 </body>
 </html>
