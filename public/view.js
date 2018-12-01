@@ -51,7 +51,7 @@ function loadUser () {
 
 /* When the room is requested, load the name, image, comment, and users. */
 function loadRoom() {
-	// chat_id = document.getElementById("selectRoom").options[document.getElementById("selectRoom").selectedIndex].value;
+	chat_id = document.getElementById("selectRoom").options[document.getElementById("selectRoom").selectedIndex].value;
 	console.log("Get the info for chat room with id " + chat_id);
 	// Set up the parameters to send to the Controller
 	var params = { id:chat_id };
@@ -61,7 +61,6 @@ function loadRoom() {
 		console.log("Getting Room data from room with id " + chat_id);
 		if (status == "success")
 		{
-			console.log(data);
 			$("#chatName").html(data.name);
 			$("#admin").html(data.username);
 			if (user_id != data.admin_id)
