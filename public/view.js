@@ -14,7 +14,7 @@ function saveImage() {
 	// Use jQuery to make the get request
 	$.post(url + "putImage", params, function(data, status){
 		console.log(status);
-		if (status == 200)
+		if (status == "success")
 			console.log("Posted image data to room with id " + chat_id);
 	});
 }
@@ -33,7 +33,7 @@ function loadRoom() {
 	$.get(url + "getChatRoom", params, function(data, status){
 		console.log(status);
 		console.log("Getting Room data from room with id " + chat_id);
-		if (status == 200)
+		if (status == "success")
 		{
 			console.log(data);
 			$("#chatName").value = data.name;
