@@ -46,9 +46,12 @@ function getUserById(id) {
 	var params = { id:id };
 	$.get(url + "getUserById", params, function(data, status){
 		console.log(status);
-		console.log("Getting user with id " + id);
-		return data;
-	}
+		if (status == "success")
+		{
+			console.log("Getting user with id " + id);
+			return data;
+		}
+	});
 }
 
 // function search() {
