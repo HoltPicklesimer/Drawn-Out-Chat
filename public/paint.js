@@ -154,7 +154,7 @@ function getImage() {
 	return imageData;
 }
 
-var URL = "https://gentle-tundra-31449.herokuapp.com/";
+var url = "https://gentle-tundra-31449.herokuapp.com/";
 var chat_id = 4;
 
 /* When a user adds a change to the image, save it to the database */
