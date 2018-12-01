@@ -52,6 +52,7 @@ function loadUser () {
 /* When the room is requested, load the name, image, comment, and users. */
 function loadRoom() {
 	chat_id = $("#selectRoom").value;
+	console.log("Get the info for chat room with id " + chat_id);
 	// Set up the parameters to send to the Controller
 	var params = { id:chat_id };
 	// Use jQuery to make the request
