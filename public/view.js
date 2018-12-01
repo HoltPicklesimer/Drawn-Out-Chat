@@ -121,7 +121,7 @@ function updateImage() {
 
 /* Search Users */
 function searchUsers() {
-	var item = $("#userSearch").text;
+	var item = $("#userSearch").val();
 	console.log(item);
 	var params = { item:item };
 	$.get(url + "searchUsers", params, function(data, status){
