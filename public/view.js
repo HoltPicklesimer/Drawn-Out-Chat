@@ -42,7 +42,7 @@ function loadUser () {
 			console.log("Getting rooms of user with id " + user_id);
 			$("#selectRoom").empty();
 			for (var i = 0; i < data.length; ++i)
-				$("#selectRoom").append("<select value='" + data[i].id + "'>" + data[i].name + "</select>");
+				$("#selectRoom").append("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
 		}
 	});
 
