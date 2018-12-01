@@ -24,7 +24,7 @@
 
 </head>
 
-<body onload="changeRange()">
+<body onload="changeRange();loadUser();">
 
 <h2 id="chatName">CHAT ROOM NAME</h2>
 
@@ -38,7 +38,7 @@
 	<script type="text/javascript" src="paint.js"></script>
 	<script type="text/javascript" src="view.js"></script>
 
-	<button onclick="clearCanvas()" class="clear btn">Clear</button>
+	<button onclick="clearCanvas();saveImage();" class="clear btn">Clear</button>
 	<button onclick="changeToEraser()" class="eraser btn">Eraser</button>
 	<span id="brushSizes">
 		Brush Size:
@@ -86,8 +86,9 @@
 
 <!-- The User Section of the Screen -->
 <div class="col-sm-4">
+	<h2 class="right-col">User: <span id="user">USER_USERNAME</span></h2>
 	<h3 style="text-align: center">Select Chat Room</h3>
-	<select id="selectRoom" class="form-control" style="width:65%; margin: 0 auto" onchange="switchRoom()">
+	<select id="selectRoom" class="form-control" style="width:65%; margin: 0 auto" onchange="loadRoom()">
 		<option>CHAT_ROOM_1</option>
 		<option>CHAT_ROOM_2</option>
 	</select>

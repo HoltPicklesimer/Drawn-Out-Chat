@@ -3,10 +3,6 @@ const app = express();
 const port = process.env.PORT || 5000;
 const path = require("path");
 const fs = require("fs");
-// const selects = require("./selects");
-// const inserts = require("./inserts");
-// const updates = require("./updates");
-// const deletes = require("./deletes");
 
 const userController = require("./controllers/userController");
 const chatController = require("./controllers/chatController");
@@ -26,24 +22,6 @@ app.set('port', (process.env.PORT || 5000));
 app.listen(app.get('port'), function(req, res){
 	console.log("Listening on port " + app.get('port'));
 });
-
-// Need to make this work
-// app.get("/", function(req, res) {
-// 	res.sendFile("main.html");
-// });
-// app.get("/getUser", selects.getUser);
-// app.get("/getChatRoom", selects.getChatRoom);
-// app.get("/getUserRooms", selects.getUserRooms);
-// app.get("/getChatUsers", selects.getChatUsers);
-// app.get("/getComment", selects.getComment);
-// app.get("/getRoomComments", selects.getRoomComments);
-// app.post("/postUser", inserts.postUser);
-// app.post("/postRoom", inserts.postRoom);
-// app.post("/addUser", inserts.addUser);
-// app.post("/postComment", inserts.postComment);
-// app.post("/putImage", updates.putImage);
-// app.post("/removeUserFromRoom", deletes.removeUserFromRoom);
-// app.post("/deleteComment", deletes.deleteComment);
 
 app.get("/getUserById", userController.getUserById)
 		.get("/getUserByInfo", userController.getUserByInfo)
