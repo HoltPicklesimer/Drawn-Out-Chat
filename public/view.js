@@ -20,7 +20,7 @@ function saveImage() {
 
 /* Load the user info */
 function loadUser () {
-	var params = { id:id };
+	var params = { id:user_id };
 	$.get(url + "getUserById", params, function(data, status){
 		console.log(status);
 		if (status == "success")
