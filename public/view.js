@@ -158,7 +158,7 @@ function loadRoomUsers() {
 			$("#userList").empty();
 			for (var i = 0; i < data.length; ++i)
 			{
-				if (isAdmin && user_id != data[i].id)
+				if (isAdmin && user_id != data[i].user_id)
 					$("#userList").append("<button class='btn btn-danger' onclick='removeUsers(\""
 					+ data[i].id + "\")'>+</button> ");
 				$("#userList").append(data[i].username + "<br/>");
