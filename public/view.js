@@ -95,6 +95,7 @@ function loadComments(id) {
 			$("#commentSection").empty();
 			for (var i = 0; i < data.length; ++i)
 			{
+				var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 				var date = new Date(data[i].date_published);
 				var dateString = date.toLocaleDateString("en-US", options);
 				$("#commentSection").append("<hr style='width:90%' />");
