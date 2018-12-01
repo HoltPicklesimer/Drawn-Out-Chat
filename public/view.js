@@ -130,9 +130,9 @@ function searchUsers() {
 		if (status == "success")
 		{
 			console.log(data);
-			$("searchedUsers").empty();
+			$("#searchedUsers").empty();
 			for (var i = 0; i < data.length; ++i)
-				$("searchedUsers").append("<button class='btn btn-success' onclick='addUser(\""
+				$("#searchedUsers").append("<button class='btn btn-success' onclick='addUser(\""
 					+ data[i].id + "\")'>+</button> " + data[i].username + "<br/>");
 		}
 	});
