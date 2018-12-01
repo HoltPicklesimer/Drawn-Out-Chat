@@ -11,7 +11,6 @@ function saveImage() {
 	// Set up the parameters to send to the Controller
 	var params = { id:chat_id, imageData:data };
 
-	// Use jQuery to make the get request
 	$.post(url + "putImage", params, function(data, status){
 		console.log(status);
 		if (status == "success")
@@ -29,7 +28,6 @@ function loadRoom() {
 	// Set up the parameters to send to the Controller
 	var params = { id:chat_id };
 
-	// Use jQuery to make the get request
 	$.get(url + "getChatRoom", params, function(data, status){
 		console.log(status);
 		console.log("Getting Room data from room with id " + chat_id);
@@ -37,19 +35,19 @@ function loadRoom() {
 		{
 			console.log(data);
 			$("#chatName").html(data.name);
-			$("#admin").html(getUserById(data.admin_id).username);
+			setAdminName(data.admin_id);
 		}
 	});
 }
 
-function getUserById(id) {
+function setAdminName(id) {
 	var params = { id:id };
 	$.get(url + "getUserById", params, function(data, status){
 		console.log(status);
 		if (status == "success")
 		{
 			console.log("Getting user with id " + id);
-			return data;
+			$("#admin").html(data.username);
 		}
 	});
 }
