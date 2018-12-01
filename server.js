@@ -24,6 +24,10 @@ app.listen(app.get('port'), function(req, res){
 	console.log("Listening on port " + app.get('port'));
 });
 
+app.get('/', function(req, res){
+  res.sendFile('paint.html');
+});
+
 app.get("/getUserById", userController.getUserById) // id
 		.get("/getUserByInfo", userController.getUserByInfo) // username, password
 		.get("/getUserRooms", userController.getUserRooms) // id
