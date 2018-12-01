@@ -127,7 +127,12 @@ function searchUsers() {
 		console.log(status);
 		console.log("Searching usernames containing " + item);
 		if (status == "success")
-			$("")
+		{
+			$("searchedUsers").empty();
+			for (var i = 0; i < data.length; ++i)
+				$("searchedUsers").append("<button class='btn btn-success' onclick='addUser(\""
+					+ data[i].id + "\")'>+</button> " + data[i].username + "<br/>");
+		}
 	});
 }
 
