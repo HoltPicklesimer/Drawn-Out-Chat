@@ -1,7 +1,7 @@
 var user_id = 13;
 var chat_id = 4;
 
-$(function(){ setInterval(update, 10000);}); // set a clock to update every second
+$(function(){ setInterval(update, 1000);}); // set a clock to update every second
 
 var url = "https://gentle-tundra-31449.herokuapp.com/";
 
@@ -71,12 +71,15 @@ function setAdminName(id) {
 /* Load the image data passed as a parameter. */
 function loadImage(data) {
 	var image = JSON.parse(data);
-	context.clearRect(0,0,context.canvas.width,context.canvas.height);
-	clickX = image.clickX;
-  clickY = image.clickY;
-  clickDrag = image.clickDrag;
-  clickColor = image.clickColor;
-  clickSize = image.clickSize;
+	if (clickX != image.clickX)
+	{
+		context.clearRect(0,0,context.canvas.width,context.canvas.height);
+		clickX = image.clickX;
+	  clickY = image.clickY;
+	  clickDrag = image.clickDrag;
+	  clickColor = image.clickColor;
+	  clickSize = image.clickSize;
+	}
   redraw();
 }
 
