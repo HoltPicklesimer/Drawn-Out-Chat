@@ -20,6 +20,16 @@ function saveImage() {
 
 /* Load the user info */
 function loadUser () {
+	var params = { id:id };
+	$.get(url + "getUserById", params, function(data, status){
+		console.log(status);
+		if (status == "success")
+		{
+			console.log("Getting user with id " + id);
+			$("#user").html(data.username);
+		}
+	});
+
 	loadRoom();
 }
 
@@ -27,7 +37,7 @@ function loadUser () {
 function loadRoom() {
 	// Set up the parameters to send to the Controller
 	var params = { id:chat_id };
-
+	// Use jQuery to make the request
 	$.get(url + "getChatRoom", params, function(data, status){
 		console.log(status);
 		console.log("Getting Room data from room with id " + chat_id);
@@ -43,6 +53,7 @@ function loadRoom() {
 	});
 }
 
+/* Part of the set-up for initialzing a chat room. */
 function setAdminName(id) {
 	var params = { id:id };
 	$.get(url + "getUserById", params, function(data, status){
@@ -55,6 +66,7 @@ function setAdminName(id) {
 	});
 }
 
+/* Load the image data passed as a parameter. */
 function loadImage(data) {
 	var image = JSON.parse(data);
 	context.clearRect(0,0,context.canvas.width,context.canvas.height);
