@@ -25,7 +25,7 @@ function loadUser () {
 		console.log(status);
 		if (status == "success")
 		{
-			console.log("Getting user with id " + id);
+			console.log("Getting user with id " + user_id);
 			$("#user").html(data.username);
 		}
 	});
