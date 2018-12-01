@@ -147,11 +147,27 @@ function changeToEraser() {
 }
 
 // Send image data to the view
-function saveImage() {
+function getImage() {
 	// Save the image data to the database
 	var imageData = { clickX:clickX, clickY:clickY, clickDrag:clickDrag,
 										clickColor:clickColor, clickSize:clickSize };
 	return imageData;
 }
 
-module.exports = { saveImage:saveImage };
+var URL = "https://gentle-tundra-31449.herokuapp.com/";
+var chat_id = 4;
+
+/* When a user adds a change to the image, save it to the database */
+function changeImage() {
+	// Get the image data
+	var data = JSON.stringify(getImage());
+
+	// Set up the parameters to send to the Controller
+	var params = { id:chat_id, imageData:data };
+
+	// Use jQuery to make the get request
+	$.post(url + "/postImage", params, function(data, status){
+		console.log("Posted image data to room with id " + chat_id);
+		console.log(status);
+	});
+}

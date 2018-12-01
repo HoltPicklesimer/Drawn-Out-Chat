@@ -1,12 +1,5 @@
-const image = require("paint.js");
-
 var user_id = 13;
 var chat_id = 4;
-
-/* When a user adds a change to the image, save it to the database */
-function changeImage() {
-	console.log(image.saveImage());
-}
 
 // function search() {
 // 	// Get the value from the search box
