@@ -1,7 +1,7 @@
 var user_id = 13;
 var chat_id = 4;
 
-$(function(){ setInterval(update, 1000);}); // set a clock to update every second
+$(function(){ setInterval(update, 100);}); // set a clock to update every second
 
 var url = "https://gentle-tundra-31449.herokuapp.com/";
 
@@ -87,10 +87,7 @@ function update() {
 		console.log(status);
 		console.log("Getting Room data from room with id " + chat_id);
 		if (status == "success")
-		{
-			console.log(data);
 			loadImage(data.image_data);
-		}
 	});
 }
 
