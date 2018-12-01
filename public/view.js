@@ -92,6 +92,15 @@ function loadComments(id) {
 		if (status == "success")
 		{
 			console.log(data);
+			$("#commentSection").empty();
+			for (var i = 0; i < data.length; ++i)
+			{
+				var date = data.date_published.getFullYear() + "/" + (data.date_published.getMonth() + 1) + "/" + data.date_published.getDate();
+				$("#commentSection").append("<hr style='width:90%' />");
+				$("#commentSection").append("<button class='btn btn-danger' onclick='removeComment(\'id_1\')'>-</button>");
+				$("#commentSection").append(" " + user_id + " said on " + date + "<br/><br/>");
+				$("#commentSection").append("<p style='width: 75%;padding: 0px 60px'>" + data.content + "</p>>");
+			}
 		}
 	});
 }
@@ -104,16 +113,6 @@ function update() {
 		console.log("Getting Room data from room with id " + chat_id);
 		if (status == "success")
 			loadImage(data.image_data);
-			$("#commentSection").empty();
-			for (var i = 0; i < data.length; ++i)
-			{
-				var date = data.date_published.getFullYear() + "/" + (data.date_published.getMonth() + 1) + "/" + data.date_published.getDate();
-				$("#commentSection").append("<hr style='width:90%' />");
-				$("#commentSection").append("<button class='btn btn-danger' onclick='removeComment(\'id_1\')'>-</button>");
-				$("#commentSection").append(" " + user_id + " said on " + date + "<br/><br/>");
-				$("#commentSection").append("<p style='width: 75%;padding: 0px 60px'>" + data.content + "</p>>");
-	
-			}
 			loadComments(id);
 	});
 }
