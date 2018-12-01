@@ -1,8 +1,7 @@
 var user_id = 13;
-var chat_id = 4;
+var chat_id = 1;
 
 var url = "https://gentle-tundra-31449.herokuapp.com/";
-var chat_id = 4;
 
 /* When a user adds a change to the image, save it to the database */
 function saveImage() {
