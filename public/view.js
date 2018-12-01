@@ -1,5 +1,6 @@
 var user_id = 13;
 var chat_id;
+var isAdmin = false;
 
 $(function(){ setInterval(loadComments, 1000);}); // set a clock to update every second to reload the comments
 
@@ -62,9 +63,12 @@ function loadRoom() {
 		{
 			$("#chatName").html(data.name);
 			$("#admin").html(data.username);
-			if (user_id != data.admin_id)
+			if (user_id == data.admin_id)
+				isAdmin = true;
+			else
 				$("#addUserDiv").empty();
 			loadImage(data.image_data);
+			loadRoomUsers();
 			loadComments(chat_id);
 		}
 	});
@@ -123,7 +127,10 @@ function updateImage() {
 function searchUsers() {
 	var item = $("#userSearch").val();
 	if (item == "")
+	{
+		$("#searchedUsers").empty();
 		return;
+	}
 	console.log(item);
 	var params = { item:item };
 	$.get(url + "searchUsers", params, function(data, status){
@@ -136,6 +143,26 @@ function searchUsers() {
 			for (var i = 0; i < data.length; ++i)
 				$("#searchedUsers").append("<button class='btn btn-success' onclick='addUser(\""
 					+ data[i].id + "\")'>+</button> " + data[i].username + "<br/>");
+		}
+	});
+}
+
+/* Load users of this Room */
+function loadRoomUsers() {
+	var params = { id:chat_id };
+	$.get(url + "getChatUsers", params, function(data, status){
+		console.log(status);
+		console.log("Getting users of chat with id " + item);
+		if (status == "success")
+		{
+			$("#userList").empty();
+			for (var i = 0; i < data.length; ++i)
+			{
+				if (isAdmin && user_id != data[i].id)
+					$("#userList").append("<button class='btn btn-danger' onclick='removeUsers(\""
+					+ data[i].id + "\")'>+</button> ");
+				$("#userList").append(data[i].username + "<br/>");
+			}
 		}
 	});
 }
