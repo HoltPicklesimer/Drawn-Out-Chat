@@ -51,6 +51,7 @@ function loadRoom() {
 			if (user_id != data.admin_id)
 				$("#addUserDiv").empty();
 			loadImage(data.image_data);
+			loadComments(chat_id);
 		}
 	});
 }
@@ -103,6 +104,7 @@ function update() {
 		console.log("Getting Room data from room with id " + chat_id);
 		if (status == "success")
 			loadImage(data.image_data);
+			loadComments(id);
 	});
 }
 
