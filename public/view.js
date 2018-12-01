@@ -1,4 +1,4 @@
-var user_id = 13;
+var user_id = 12;
 var chat_id = 4;
 
 var url = "https://gentle-tundra-31449.herokuapp.com/";
@@ -36,6 +36,8 @@ function loadRoom() {
 			console.log(data);
 			$("#chatName").html(data.name);
 			setAdminName(data.admin_id);
+			if (user_id != data.admin_id)
+				$("#addUserDiv").empty();
 		}
 	});
 }
