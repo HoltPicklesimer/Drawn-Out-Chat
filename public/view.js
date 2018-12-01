@@ -99,7 +99,7 @@ function loadComments(id) {
 				var date = new Date(data[i].date_published);
 				var dateString = date.toLocaleDateString("en-US", options);
 				$("#commentSection").append("<hr style='width:90%' />");
-				$("#commentSection").append("<button class='btn btn-danger' onclick='removeComment(''" + data[i].id + "'')'>-</button>");
+				$("#commentSection").append("<button class='btn btn-danger' onclick='removeComment(\"" + data[i].id + "\")'>-</button>");
 				$("#commentSection").append(" " + data[i].username + " said on " + dateString + "<br/><br/>");
 				$("#commentSection").append("<p style='width: 75%;padding: 0px 60px'>" + data[i].content + "</p>");
 			}
