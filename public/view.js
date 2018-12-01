@@ -1,7 +1,5 @@
 var user_id = 13;
-var chat_id = 2;
-
-console.log(user_id);
+var chat_id = 4;
 
 var url = "https://gentle-tundra-31449.herokuapp.com/";
 
@@ -31,7 +29,7 @@ function loadRoom() {
 	var params = { id:chat_id };
 
 	// Use jQuery to make the get request
-	$.get(url + "getRoom", params, function(data, status){
+	$.get(url + "getChatRoom", params, function(data, status){
 		console.log("Getting Room data from room with id " + chat_id);
 		console.log(data);
 		console.log(status);
