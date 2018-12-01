@@ -33,7 +33,7 @@
 <!-- The drawing portion of the screen -->
 <div class="col-sm-8" style="padding: 0px 30px">
 
-	<div id="canvasDiv" onload="initialize()" onmouseenter="update()" onmouseup="saveImage()"></div>
+	<div id="canvasDiv" onload="initialize()" onmouseup="saveImage()"></div>
 
 	<script type="text/javascript" src="paint.js"></script>
 	<script type="text/javascript" src="view.js"></script>
@@ -76,6 +76,7 @@
 	</div>
 
 	<div class="col-sm-5" id="commentForm">
+		<button class="btn btn-info" onclick="update()">Refresh</button>
 		<textarea id="commentBox" style="resize:none" class="form-control"></textarea><br/>
 		<button class="btn btn-info">Add Comment</button>
 	</div>
