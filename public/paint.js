@@ -166,7 +166,7 @@ function changeImage() {
 	var params = { id:chat_id, imageData:data };
 
 	// Use jQuery to make the get request
-	$.post(url + "/postImage", params, function(data, status){
+	$.post(url + "putImage", params, function(data, status){
 		console.log("Posted image data to room with id " + chat_id);
 		console.log(status);
 	});
