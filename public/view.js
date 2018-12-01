@@ -36,7 +36,7 @@ function loadRoom() {
 		if (status == "success")
 		{
 			console.log(data);
-			$("#chatName").innerHTML = data.name;
+			$("#chatName").append(data.name);
 		}
 	});
 }
