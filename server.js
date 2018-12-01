@@ -4,6 +4,11 @@ const port = process.env.PORT || 5000;
 const path = require("path");
 const fs = require("fs");
 const http = require("http").Server(app);
+var io = require('socket.io')(http);
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
 
 const userController = require("./controllers/userController");
 const chatController = require("./controllers/chatController");
@@ -22,10 +27,6 @@ app.set('port', (process.env.PORT || 5000));
 // Listen on the port
 app.listen(app.get('port'), function(req, res){
 	console.log("Listening on port " + app.get('port'));
-});
-
-app.get('/', function(req, res){
-  res.sendFile(__dirname + 'public/paint.html');
 });
 
 app.get("/getUserById", userController.getUserById) // id
