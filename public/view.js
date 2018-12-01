@@ -1,5 +1,5 @@
 var user_id = 13;
-var chat_id = 1;
+var chat_id = 2;
 
 var url = "https://gentle-tundra-31449.herokuapp.com/";
 
