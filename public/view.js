@@ -1,5 +1,5 @@
 var user_id = 13;
-var chat_id = 4;
+var chat_id;
 
 $(function(){ setInterval(loadComments, 1000);}); // set a clock to update every second to reload the comments
 
@@ -35,7 +35,7 @@ function loadUser () {
 
 	// load the rooms the user is a member of
 	params = { id:user_id };
-	$.get(url + "getUserRooms", params, function(data, status, loadRoom){
+	$.get(url + "getUserRooms", params, function(data, status){
 		console.log(status);
 		if (status == "success")
 		{
@@ -43,6 +43,7 @@ function loadUser () {
 			$("#selectRoom").empty();
 			for (var i = 0; i < data.length; ++i)
 				$("#selectRoom").append("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
+			loadRoom();
 		}
 	});
 }

@@ -7,7 +7,7 @@ var queries = [
 	"SELECT c.id, c.name, c.admin_id, c.image_data, u.username FROM chat_rooms c JOIN users u ON u.id = c.admin_id WHERE c.id = $1::int",
 	"SELECT cu.id, cu.user_id, cu.chat_id, u.username FROM chat_users cu JOIN users u ON u.id = cu.user_id WHERE cu.chat_id = $1::int",
 	"SELECT c.id, c.chat_id, c.user_id, c.content, c.date_published, u.username FROM comments c JOIN users u ON c.user_id = u.id WHERE c.chat_id = $1 ORDER BY c.date_published DESC",
-	"INSERT INTO chat_rooms (name, admin_id, image_data) VALUES ($1::varchar, $2::int, '{}')",
+	"INSERT INTO chat_rooms (name, admin_id, image_data) VALUES ($1::varchar, $2::int, '{''clickX'':[],''clickY'':[],''clickDrag'':[],''clickColor'':[],''clickSize'':[]}')",
 	"INSERT INTO chat_users (user_id, chat_id) VALUES ($1::int, $2::int)",
 	"UPDATE chat_rooms SET image_data = $2::text WHERE id = $1::int",
 	"DELETE FROM chat_users WHERE user_id = $1::int AND chat_id = $2::int"
