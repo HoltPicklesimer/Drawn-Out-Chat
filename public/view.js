@@ -1,6 +1,24 @@
 var user_id = 13;
 var chat_id = 4;
 
+var url = "https://gentle-tundra-31449.herokuapp.com/";
+var chat_id = 4;
+
+/* When a user adds a change to the image, save it to the database */
+function saveImage() {
+	// Get the image data
+	var data = JSON.stringify(getImage());
+
+	// Set up the parameters to send to the Controller
+	var params = { id:chat_id, imageData:data };
+
+	// Use jQuery to make the get request
+	$.post(url + "putImage", params, function(data, status){
+		console.log("Posted image data to room with id " + chat_id);
+		console.log(status);
+	});
+}
+
 // function search() {
 // 	// Get the value from the search box
 // 	var searchString = $("#txtSearch").val();
