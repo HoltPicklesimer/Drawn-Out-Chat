@@ -1,7 +1,7 @@
 var user_id = 13;
 var chat_id = 4;
 
-// $(function(){ setInterval(update, 1000);}); // set a clock to update every second
+$(function(){ setInterval(loadComments, 1000);}); // set a clock to update every second to reload the comments
 
 var url = "https://gentle-tundra-31449.herokuapp.com/";
 
@@ -22,6 +22,7 @@ function saveImage() {
 
 /* Load the user info */
 function loadUser () {
+	// load the basic user info
 	var params = { id:user_id };
 	$.get(url + "getUserById", params, function(data, status){
 		console.log(status);
@@ -29,6 +30,19 @@ function loadUser () {
 		{
 			console.log("Getting user with id " + user_id);
 			$("#user").html(data.username);
+		}
+	});
+
+	// load the rooms the user is a member of
+	params = { id:user_id };
+	$.get(url + "getUserRooms", params, function(data, status){
+		console.log(status);
+		if (status == "success")
+		{
+			console.log("Getting rooms of user with id " + user_id);
+			$("#selectRoom").empty();
+			for (var i = 0; i < data.length; ++i)
+				$("#selectRoom").append("<select value='" + data[i].id + "'>" + data[i].name + "</select>");
 		}
 	});
 
@@ -78,7 +92,6 @@ function loadComments(id) {
 		console.log("Getting Room comments from room with id " + chat_id);
 		if (status == "success")
 		{
-			console.log(data);
 			$("#commentSection").empty();
 			for (var i = 0; i < data.length; ++i)
 			{
@@ -86,7 +99,7 @@ function loadComments(id) {
 				var date = new Date(data[i].date_published);
 				var dateString = date.toLocaleDateString("en-US", options);
 				$("#commentSection").append("<hr style='width:90%' />");
-				$("#commentSection").append("<button class='btn btn-danger' onclick='removeComment(\'id_1\')'>-</button>");
+				$("#commentSection").append("<button class='btn btn-danger' onclick='removeComment(\'" + data[i].id + "\')'>-</button>");
 				$("#commentSection").append(" " + data[i].username + " said on " + dateString + "<br/><br/>");
 				$("#commentSection").append("<p style='width: 75%;padding: 0px 60px'>" + data[i].content + "</p>");
 			}
@@ -94,7 +107,7 @@ function loadComments(id) {
 	});
 }
 
-function update() {
+function updateImage() {
 	// update the image
 	var params = { id:chat_id };
 	$.get(url + "getChatRoom", params, function(data, status){
