@@ -37,8 +37,18 @@ function loadRoom() {
 		{
 			console.log(data);
 			$("#chatName").html(data.name);
+			$("#admin").html(getUserById(data.admin_id).username);
 		}
 	});
+}
+
+function getUserById(id) {
+	var params = { id:id };
+	$.get(url + "getUserById", params, function(data, status){
+		console.log(status);
+		console.log("Getting user with id " + id);
+		return data;
+	}
 }
 
 // function search() {

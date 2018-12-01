@@ -23,17 +23,17 @@ app.listen(app.get('port'), function(req, res){
 	console.log("Listening on port " + app.get('port'));
 });
 
-app.get("/getUserById", userController.getUserById)
-		.get("/getUserByInfo", userController.getUserByInfo)
-		.get("/getUserRooms", userController.getUserRooms)
-		.post("/postUser", userController.postUser)
-		.get("/getChatRoom", chatController.getChatRoom)
-		.get("/getChatUsers", chatController.getChatUsers)
-		.get("/getRoomComments", chatController.getRoomComments)
-		.post("/postRoom", chatController.postRoom)
-		.post("/addUser", chatController.addUser)
-		.post("/putImage", chatController.putImage)
-		.post("/removeUserFromRoom", chatController.removeUserFromRoom)
-		.get("/getComment", commentController.getComment)
-		.post("/postComment", commentController.postComment)
-		.post("/deleteComment", commentController.deleteComment);
+app.get("/getUserById", userController.getUserById) // id
+		.get("/getUserByInfo", userController.getUserByInfo) // username, password
+		.get("/getUserRooms", userController.getUserRooms) // id
+		.post("/postUser", userController.postUser) // username, password
+		.get("/getChatRoom", chatController.getChatRoom) // id
+		.get("/getChatUsers", chatController.getChatUsers) // id
+		.get("/getRoomComments", chatController.getRoomComments) // id
+		.post("/postRoom", chatController.postRoom) // name, adminId
+		.post("/addUser", chatController.addUser) // userId, chatId
+		.post("/putImage", chatController.putImage) // id, imageData
+		.post("/removeUserFromRoom", chatController.removeUserFromRoom) // userId, chatId
+		.get("/getComment", commentController.getComment) // id
+		.post("/postComment", commentController.postComment) // chatId, userId, content
+		.post("/deleteComment", commentController.deleteComment); // id
