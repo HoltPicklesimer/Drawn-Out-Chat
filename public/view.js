@@ -47,7 +47,7 @@ function loadRoom() {
 		{
 			console.log(data);
 			$("#chatName").html(data.name);
-			setAdminName(data.admin_id);
+			$("#admin").html(data.username);
 			if (user_id != data.admin_id)
 				$("#addUserDiv").empty();
 			loadImage(data.image_data);
@@ -64,7 +64,7 @@ function setAdminName(id) {
 		if (status == "success")
 		{
 			console.log("Getting user with id " + id);
-			$("#admin").html(data.username);
+			
 		}
 	});
 }
