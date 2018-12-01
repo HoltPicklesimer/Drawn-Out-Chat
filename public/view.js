@@ -35,7 +35,7 @@ function loadUser () {
 
 	// load the rooms the user is a member of
 	params = { id:user_id };
-	$.get(url + "getUserRooms", params, function(data, status){
+	$.get(url + "getUserRooms", params, function(data, status, loadRoom){
 		console.log(status);
 		if (status == "success")
 		{
@@ -45,8 +45,6 @@ function loadUser () {
 				$("#selectRoom").append("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
 		}
 	});
-
-	loadRoom();
 }
 
 /* When the room is requested, load the name, image, comment, and users. */
