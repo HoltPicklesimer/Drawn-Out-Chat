@@ -122,6 +122,8 @@ function updateImage() {
 /* Search Users */
 function searchUsers() {
 	var item = $("#userSearch").val();
+	if (item == "")
+		return;
 	console.log(item);
 	var params = { item:item };
 	$.get(url + "searchUsers", params, function(data, status){
@@ -140,7 +142,8 @@ function searchUsers() {
 
 /* Clear the users when focus is lost on the search bar */
 function clearUserSearch() {
-	$("#searchedUsers").empty();
+	if ($("#searchedUsers") == "")
+		$("#searchedUsers").empty();
 }
 
 // function search() {
