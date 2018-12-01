@@ -152,7 +152,7 @@ function loadRoomUsers() {
 	var params = { id:chat_id };
 	$.get(url + "getChatUsers", params, function(data, status){
 		console.log(status);
-		console.log("Getting users of chat with id " + item);
+		console.log("Getting users of chat with id " + chat_id);
 		if (status == "success")
 		{
 			$("#userList").empty();
