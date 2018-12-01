@@ -7,7 +7,8 @@ var queries = [
 	"SELECT id, username, password FROM users WHERE id = $1::int",
 	"SELECT id, username, password FROM users WHERE username = $1::varchar AND password = $2::varchar",
 	"SELECT c.id, c.name, c.admin_id, c.image_data FROM chat_rooms c JOIN chat_users cu ON c.id = cu.chat_id JOIN users u ON u.id = cu.user_id WHERE u.id = $1::int",
-	"INSERT INTO users (username, password) VALUES ($1::varchar, $2::varchar)"
+	"INSERT INTO users (username, password) VALUES ($1::varchar, $2::varchar)",
+	"SELECT id, username FROM users WHERE username LIKE ''%$1::varchar%''"
 ];
 
 // Get a user from the database by id
@@ -88,4 +89,24 @@ function insertUserIntoDb(username, password, callback) {
 	});
 }
 
-module.exports = { getUserFromDbById:getUserFromDbById, getUserFromDbByInfo:getUserFromDbByInfo, getUserRoomsFromDb:getUserRoomsFromDb, insertUserIntoDb:insertUserIntoDb };
+// Get users with usernames containing item
+function searchUsers(item, callback) {
+	var sql = queries[4];
+	var params = [item];
+
+	pool.query(sql, params, function(err, result){
+
+		if (err) {
+			console.log("Error in query: ");
+			console.log(err);
+			callback(err, null);
+		}
+
+		console.log("Found result: " + JSON.stringify(result.rows));
+
+		callback(null, result.rows);
+	});
+}
+
+module.exports = { getUserFromDbById:getUserFromDbById, getUserFromDbByInfo:getUserFromDbByInfo, getUserRoomsFromDb:getUserRoomsFromDb,
+									 insertUserIntoDb:insertUserIntoDb, searchUsers:searchUsers };

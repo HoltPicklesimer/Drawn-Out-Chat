@@ -99,7 +99,7 @@ function loadComments(id) {
 				var date = new Date(data[i].date_published);
 				var dateString = date.toLocaleDateString("en-US", options);
 				$("#commentSection").append("<hr style='width:90%' />");
-				$("#commentSection").append("<button class='btn btn-danger' onclick='removeComment(\'" + data[i].id + "\')'>-</button>");
+				$("#commentSection").append("<button class='btn btn-danger' onclick='removeComment(''" + data[i].id + "'')'>-</button>");
 				$("#commentSection").append(" " + data[i].username + " said on " + dateString + "<br/><br/>");
 				$("#commentSection").append("<p style='width: 75%;padding: 0px 60px'>" + data[i].content + "</p>");
 			}
@@ -107,6 +107,7 @@ function loadComments(id) {
 	});
 }
 
+/* Update the image */
 function updateImage() {
 	// update the image
 	var params = { id:chat_id };
@@ -115,7 +116,18 @@ function updateImage() {
 		console.log("Getting Room data from room with id " + chat_id);
 		if (status == "success")
 			loadImage(data.image_data);
-			loadComments(id);
+	});
+}
+
+/* Search Users */
+function searchUsers() {
+	var item = $("#userSearch");
+	var params = { item:item };
+	$.get(url + "searchUsers", params, function(data, status){
+		console.log(status);
+		console.log("Searching usernames containing " + item);
+		if (status == "success")
+			$("")
 	});
 }
 

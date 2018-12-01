@@ -59,4 +59,18 @@ function postUser(req, res) {
 	});
 }
 
-module.exports = { getUserById:getUserById, getUserByInfo:getUserByInfo, getUserRooms:getUserRooms, postUser:postUser };
+// SEarch users by item
+function searchUsers(req, res) {
+	var item = req.query.item;
+	console.log("Searching usernames containing " + item);
+	userModel.searchUsers(item, function (error, result) {
+		if (error) {
+			res.status(500).json({success:false, data:error});
+		} else {
+			var users = result;
+			res.status(200).json(result);
+		}
+	});
+}
+
+module.exports = { getUserById:getUserById, getUserByInfo:getUserByInfo, getUserRooms:getUserRooms, postUser:postUser, searchUsers:searchUsers };
