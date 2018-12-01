@@ -95,11 +95,11 @@ function loadComments(id) {
 			$("#commentSection").empty();
 			for (var i = 0; i < data.length; ++i)
 			{
-				var date = data.date_published.getFullYear() + "/" + (data.date_published.getMonth() + 1) + "/" + data.date_published.getDate();
+				var date = data[i].date_published.getFullYear() + "/" + (data[i].date_published.getMonth() + 1) + "/" + data[i].date_published.getDate();
 				$("#commentSection").append("<hr style='width:90%' />");
 				$("#commentSection").append("<button class='btn btn-danger' onclick='removeComment(\'id_1\')'>-</button>");
-				$("#commentSection").append(" " + user_id + " said on " + date + "<br/><br/>");
-				$("#commentSection").append("<p style='width: 75%;padding: 0px 60px'>" + data.content + "</p>>");
+				$("#commentSection").append(" " + data[i].user_id + " said on " + date + "<br/><br/>");
+				$("#commentSection").append("<p style='width: 75%;padding: 0px 60px'>" + data[i].content + "</p>>");
 			}
 		}
 	});
