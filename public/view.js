@@ -38,6 +38,8 @@ function loadUser () {
 			$("#user").html(data.username);
 		}
 	});
+
+	loadUserRooms();
 }
 
 function loadUserRooms() {
