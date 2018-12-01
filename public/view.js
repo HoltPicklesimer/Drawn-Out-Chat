@@ -101,7 +101,7 @@ function loadComments(id) {
 				$("#commentSection").append("<hr style='width:90%' />");
 				$("#commentSection").append("<button class='btn btn-danger' onclick='removeComment(\'id_1\')'>-</button>");
 				$("#commentSection").append(" " + data[i].user_id + " said on " + dateString + "<br/><br/>");
-				$("#commentSection").append("<p style='width: 75%;padding: 0px 60px'>" + data[i].content + "</p>>");
+				$("#commentSection").append("<p style='width: 75%;padding: 0px 60px'>" + data[i].content + "</p>");
 			}
 		}
 	});
