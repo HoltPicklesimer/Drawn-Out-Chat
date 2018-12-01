@@ -25,7 +25,7 @@ app.listen(app.get('port'), function(req, res){
 });
 
 app.get('/', function(req, res){
-  res.sendFile('paint.html');
+  res.sendFile(__dirname + 'public/paint.html');
 });
 
 app.get("/getUserById", userController.getUserById) // id
