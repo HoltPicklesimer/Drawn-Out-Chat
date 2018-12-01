@@ -71,7 +71,7 @@ function setAdminName(id) {
 /* Load the image data passed as a parameter. */
 function loadImage(data) {
 	var image = JSON.parse(data);
-	if (clickX != image.clickX)
+	if (clickX[clickX.length-1] != image.clickX[image.clickX.length-1])
 	{
 		context.clearRect(0,0,context.canvas.width,context.canvas.height);
 		clickX = image.clickX;
