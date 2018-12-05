@@ -59,6 +59,7 @@ function loadUserRooms() {
 
 /* When the room is requested, load the name, image, comment, and users. */
 function loadRoom() {
+	console.log("load Room function !!");
 	if (document.getElementById("selectRoom").options[roomIndex] == 'undefined')
 	{
 		document.getElementById("selectRoom").selectedIndex = "0";
