@@ -117,5 +117,5 @@ function deleteRoom(req, res) {
 }
 
 module.exports = { getChatRoom:getChatRoom, getChatUsers:getChatUsers, getRoomComments:getRoomComments,
-									 postRoom:postRoom, addUser:addUser, putImage:putImage, removeUserFromRoom:removeUserFromRoom
+									 postRoom:postRoom, addUser:addUser, putImage:putImage, removeUserFromRoom:removeUserFromRoom,
 									 deleteRoom:deleteRoom };
