@@ -11,7 +11,9 @@ var queries = [
 	"INSERT INTO chat_users (user_id, chat_id) VALUES ($1::int, $2::int)", 
 	"UPDATE chat_rooms SET image_data = $2::text WHERE id = $1::int",
 	"DELETE FROM chat_users WHERE user_id = $1::int AND chat_id = $2::int",
-	"DELETE co.*, cu.*, c.* FROM comments co JOIN chat_users cu ON co.chat_id = cu.chat_id JOIN chat_rooms c ON cu.chat_id = c.id WHERE c.id = $1::int"
+	"DELETE FROM comments, chat_users, chat_rooms WHERE chat_id = $1::int",
+	"DELETE FROM chat_users WHERE chat_id = $1::int",
+	"DELETE FROM chat_rooms WHERE id = $1::int"
 ];
 
 // Get a chat room from the database
@@ -148,7 +150,11 @@ function removeUserInDb(user_id, chat_id, callback) {
 	});
 }
 
-// Remove chat room from the database
+/**************** Delete a Room from the database. ********************
+ * Delete Comments, Remove Room Users, then Remove the Room.
+ * Call deleteRoomFromDb to initiate.
+ **********************************************************************/ 
+// Remove chat room from the database, start with comments
 function deleteRoomFromDb(id, callback) {
 	var sql = queries[7];
 	var params = [id];
@@ -160,12 +166,51 @@ function deleteRoomFromDb(id, callback) {
 			console.log(err);
 			callback(err, null);
 		}else{
-			console.log("Removed chat room with id " + id);
+			console.log("Removeing chat room with id " + id);
+			deleteRoomRelationships(id, callback);
+		}
+
+	});
+}
+
+// Remove the room relationships of the room being deleted
+function deleteRoomRelationships(id, callback) {
+	var sql = queries[8];
+	var params = [id];
+
+	pool.query(sql, params, function(err, result){
+
+		if (err) {
+			console.log("Error in query: ");
+			console.log(err);
+			callback(err, null);
+		}else{
+			console.log("Removeing chat room with id " + id);
+			deleteRoom(id, callback);
+		}
+
+	});
+}
+
+// Remove the room to finish
+function deleteRoom(id, callback) {
+	var sql = queries[9];
+	var params = [id];
+
+	pool.query(sql, params, function(err, result){
+
+		if (err) {
+			console.log("Error in query: ");
+			console.log(err);
+			callback(err, null);
+		}else{
+			console.log("Removeing chat room with id " + id);
 			callback(null);
 		}
 
 	});
 }
+/**************** End of deleteRoomFromDb *********************/
 
 module.exports = { getRoomFromDb:getRoomFromDb, getChatUsersFromDb:getChatUsersFromDb, getRoomCommentsFromDb:getRoomCommentsFromDb,
 									 insertRoomIntoDb:insertRoomIntoDb, addUserToRoomInDb:addUserToRoomInDb, updateImageInDb:updateImageInDb,
