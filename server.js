@@ -37,5 +37,5 @@ app.get("/getUserById", userController.getUserById) // id
 		.get("/getComment", commentController.getComment) // id
 		.post("/postComment", commentController.postComment) // chatId, userId, content
 		.post("/deleteComment", commentController.deleteComment) // id
-		.get("/searchUsers", userController.searchUsers); // item
-		.post("/deleteRoom", chatController.deleteRoom); // item
+		.get("/searchUsers", userController.searchUsers) // item
+		.post("/deleteRoom", chatController.deleteRoom); // id
