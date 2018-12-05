@@ -11,7 +11,7 @@ var queries = [
 	"INSERT INTO chat_users (user_id, chat_id) VALUES ($1::int, $2::int)", 
 	"UPDATE chat_rooms SET image_data = $2::text WHERE id = $1::int",
 	"DELETE FROM chat_users WHERE user_id = $1::int AND chat_id = $2::int",
-	"DELETE FROM comments, chat_users, chat_rooms WHERE chat_id = $1::int",
+	"DELETE FROM comments WHERE chat_id = $1::int",
 	"DELETE FROM chat_users WHERE chat_id = $1::int",
 	"DELETE FROM chat_rooms WHERE id = $1::int"
 ];
