@@ -11,7 +11,7 @@ var queries = [
 	"INSERT INTO chat_users (user_id, chat_id) VALUES ($1::int, $2::int)", 
 	"UPDATE chat_rooms SET image_data = $2::text WHERE id = $1::int",
 	"DELETE FROM chat_users WHERE user_id = $1::int AND chat_id = $2::int",
-	"DELETE FROM comments WHERE chat_id = $1::int; DELETE FROM chat_users WHERE chat_id = $1::int; DELETE FROM chat_rooms WHERE id = $1::int;"
+	"DELETE co.*, cu.*, c.* FROM comments co JOIN chat_users cu ON co.chat_id = cu.chat_id JOIN chat_rooms c ON cu.chat_id = c.id WHERE c.id = $1::int"
 ];
 
 // Get a chat room from the database
