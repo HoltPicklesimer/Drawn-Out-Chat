@@ -11,6 +11,7 @@ var queries = [
 	"INSERT INTO chat_users (user_id, chat_id) VALUES ($1::int, $2::int)", 
 	"UPDATE chat_rooms SET image_data = $2::text WHERE id = $1::int",
 	"DELETE FROM chat_users WHERE user_id = $1::int AND chat_id = $2::int"
+	"DELETE FROM comments WHERE chat_id = $1::int; DELETE FROM chat_users WHERE chat_id = $1::int; DELETE FROM chat_rooms WHERE id = $1::int;"
 ];
 
 // Get a chat room from the database
@@ -147,6 +148,25 @@ function removeUserInDb(user_id, chat_id, callback) {
 	});
 }
 
+// Remove chat room from the database
+function deleteRoomFromDb(id, callback) {
+	var sql = queries[7];
+	var params = [id];
+
+	pool.query(sql, params, function(err, result){
+
+		if (err) {
+			console.log("Error in query: ");
+			console.log(err);
+			callback(err, null);
+		}else{
+			console.log("Removed chat room with id " + id);
+			callback(null);
+		}
+
+	});
+}
+
 module.exports = { getRoomFromDb:getRoomFromDb, getChatUsersFromDb:getChatUsersFromDb, getRoomCommentsFromDb:getRoomCommentsFromDb,
 									 insertRoomIntoDb:insertRoomIntoDb, addUserToRoomInDb:addUserToRoomInDb, updateImageInDb:updateImageInDb,
-									 removeUserInDb:removeUserInDb };
+									 removeUserInDb:removeUserInDb, deleteRoomFromDb:deleteRoomFromDb };

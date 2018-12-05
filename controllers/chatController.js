@@ -102,5 +102,20 @@ function removeUserFromRoom(req, res) {
 	});
 }
 
+// Delete a chat room
+function deleteRoom(req, res) {
+	var id = req.body.id;
+	console.log("Deleting chat room of id " + id);
+	chatModel.deleteRoomFromDb(id, function (error, result) {
+		if (error) {
+			res.status(500).json({success:false, data:error});
+		} else {
+			result = { success:true, deletedRoom: { id:id } };
+			res.status(200).json(result);
+		}
+	});
+}
+
 module.exports = { getChatRoom:getChatRoom, getChatUsers:getChatUsers, getRoomComments:getRoomComments,
-									 postRoom:postRoom, addUser:addUser, putImage:putImage, removeUserFromRoom:removeUserFromRoom };
+									 postRoom:postRoom, addUser:addUser, putImage:putImage, removeUserFromRoom:removeUserFromRoom
+									 deleteRoom:deleteRoom };

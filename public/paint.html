@@ -96,7 +96,6 @@
 	<h3 style="text-align: center">Create Chat Room</h3>
 	<input type="text" id="chatNamer" class="form-control" style="width:65%; margin: 0 auto" />
 	<button class="btn btn-info" onclick="createChatRoom()" style="margin: 0 auto">Create Chat Room</button>
-	<button class="btn btn-info" onclick="" style="margin: 0 auto">Delete Chat Room</button>
 	<h3 style="text-align: center">Select Chat Room</h3>
 	<select id="selectRoom" class="form-control" style="width:65%; margin: 0 auto" onchange="loadRoom()">
 		<option>CHAT_ROOM_1</option>
@@ -107,6 +106,7 @@
 	<hr class="right-col" style="width:50%" />
 	<div class="right-col">Admin: <span id="admin">ADMIN_USERNAME</span></div>
 	<div id="addUserDiv">
+		<button id="deleteRoomButton" class="btn btn-danger" onclick="" style="margin: 0 auto">Delete Chat Room</button>
 		<h4 class="right-col">Search Users to Add to Chat:</h4>
 		<input type="text" id="userSearch" class="form-control" onchange="searchUsers()" onblur="clearUserSearch()" style="width:65%; margin: 0 auto" />
 		<br/>
