@@ -60,7 +60,7 @@ function loadUserRooms() {
 /* When the room is requested, load the name, image, comment, and users. */
 function loadRoom() {
 	if (document.getElementById("selectRoom").options[roomIndex] == 'undefined')
-				document.getElementById("selectRoom").selectedIndex = "0";
+				document.getElementById("selectRoom").selectedIndex = 0;
 	roomIndex = document.getElementById("selectRoom").selectedIndex;
 	chat_id = document.getElementById("selectRoom").options[roomIndex].value;
 	// Set up the parameters to send to the Controller
