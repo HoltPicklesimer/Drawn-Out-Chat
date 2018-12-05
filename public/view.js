@@ -33,9 +33,7 @@ function loadUser () {
 	$.get(url + "getUserById", params, function(data, status){
 		console.log(status);
 		if (status == "success")
-		{
 			$("#user").html(data.username);
-		}
 	});
 
 	loadUserRooms();
@@ -192,12 +190,11 @@ function addComment() {
 	$.post(url + "postComment", params, function(data, status){
 		console.log(status);
 		if (status == "success")
-		{
 			$("#commentBox").val('');
-		}
 	});
 }
 
+/* When the user creates a chat room */
 function createChatRoom() {
 	// Get the name
 	var name = $("#chatNamer").val();
@@ -210,7 +207,22 @@ function createChatRoom() {
 
 	$.post(url + "postRoom", params, function(data, status){
 		console.log(status);
-		loadUserRooms();
+		 if (status == "success")
+		 {
+		 	$("#chatNamer").val('');
+			loadUserRooms();
+		}
+	});
+}
+
+function deleteChatRoom() {
+	// Set up the parameters to send to the Controller
+	var params = { id:chat_id };
+
+	$.post(url + "deleteRoom", params, function(data, status){
+		console.log(status);
+		 if (status == "success")
+			loadUserRooms();
 	});
 }
 
