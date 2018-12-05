@@ -49,7 +49,7 @@ function loadUserRooms() {
 			$("#selectRoom").empty();
 			for (var i = 0; i < data.length; ++i)
 				$("#selectRoom").append("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
-			if (typeof chat_id == 'undefined')
+			if (typeof chat_id == 'undefined' || chat_id == 'undefined')
 				loadRoom();
 			else
 				document.getElementById("selectRoom").selectedIndex = roomIndex;
@@ -222,7 +222,10 @@ function deleteChatRoom() {
 	$.post(url + "deleteRoom", params, function(data, status){
 		console.log(status);
 		 if (status == "success")
-			loadUserRooms();
+		 {
+		 	chat_id = 'undefined';
+			loadUserRooms(true);
+		 }
 	});
 }
 
