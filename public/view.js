@@ -1,5 +1,6 @@
 var user_id = 13;
 var chat_id;
+var roomIndex = 0;
 var isAdmin = false;
 
 $(function(){ setInterval(updateOnTimer, 1000);}); // set a clock to update every second to reload the comments
@@ -50,14 +51,18 @@ function loadUserRooms() {
 			$("#selectRoom").empty();
 			for (var i = 0; i < data.length; ++i)
 				$("#selectRoom").append("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
-			loadRoom();
+			if (!chat_id)
+				loadRoom();
+			else
+				document.getElementById("selectRoom").selectedIndex = roomIndex;
 		}
 	});
 }
 
 /* When the room is requested, load the name, image, comment, and users. */
 function loadRoom() {
-	chat_id = document.getElementById("selectRoom").options[document.getElementById("selectRoom").selectedIndex].value;
+	roomIndex = document.getElementById("selectRoom").selectedIndex;
+	chat_id = document.getElementById("selectRoom").options[roomIndex].value;
 	// Set up the parameters to send to the Controller
 	var params = { id:chat_id };
 	// Use jQuery to make the request
