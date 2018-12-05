@@ -85,7 +85,6 @@ function insertRoomIntoDb(name, admin_id, callback) {
 			console.log("Chat Room successfully added with name " + name + " by admin with id " + admin_id);
 			console.log("Found result: " + JSON.stringify(result.rows));
 			addUserToRoomInDb(admin_id, result.rows[0].id, callback);
-			callback(null);
 		}
 
 	});
