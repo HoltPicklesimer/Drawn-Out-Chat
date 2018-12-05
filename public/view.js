@@ -9,6 +9,7 @@ var url = "https://gentle-tundra-31449.herokuapp.com/";
 function updateOnTimer() {
 	loadComments();
 	loadRoomUsers();
+	loadUserRooms();
 }
 
 /* When a user adds a change to the image, save it to the database */
@@ -21,8 +22,6 @@ function saveImage() {
 
 	$.post(url + "putImage", params, function(data, status){
 		console.log(status);
-		if (status == "success")
-			console.log("Posted image data to room with id " + chat_id);
 	});
 }
 
@@ -34,7 +33,6 @@ function loadUser () {
 		console.log(status);
 		if (status == "success")
 		{
-			console.log("Getting user with id " + user_id);
 			$("#user").html(data.username);
 		}
 	});
@@ -49,7 +47,6 @@ function loadUserRooms() {
 		console.log(status);
 		if (status == "success")
 		{
-			console.log("Getting rooms of user with id " + user_id);
 			$("#selectRoom").empty();
 			for (var i = 0; i < data.length; ++i)
 				$("#selectRoom").append("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
@@ -61,13 +58,11 @@ function loadUserRooms() {
 /* When the room is requested, load the name, image, comment, and users. */
 function loadRoom() {
 	chat_id = document.getElementById("selectRoom").options[document.getElementById("selectRoom").selectedIndex].value;
-	console.log("Get the info for chat room with id " + chat_id);
 	// Set up the parameters to send to the Controller
 	var params = { id:chat_id };
 	// Use jQuery to make the request
 	$.get(url + "getChatRoom", params, function(data, status){
 		console.log(status);
-		console.log("Getting Room data from room with id " + chat_id);
 		if (status == "success")
 		{
 			$("#chatName").html(data.name);
@@ -102,7 +97,6 @@ function loadComments(id) {
 	var params = { id:chat_id };
 	$.get(url + "getRoomComments", params, function(data, status){
 		console.log(status);
-		console.log("Getting Room comments from room with id " + chat_id);
 		if (status == "success")
 		{
 			$("#commentSection").empty();
@@ -126,7 +120,6 @@ function updateImage() {
 	var params = { id:chat_id };
 	$.get(url + "getChatRoom", params, function(data, status){
 		console.log(status);
-		console.log("Getting Room data from room with id " + chat_id);
 		if (status == "success")
 			loadImage(data.image_data);
 	});
@@ -144,7 +137,6 @@ function searchUsers() {
 	var params = { item:item };
 	$.get(url + "searchUsers", params, function(data, status){
 		console.log(status);
-		console.log("Searching usernames containing " + item);
 		if (status == "success")
 		{
 			console.log(data);
@@ -161,7 +153,6 @@ function loadRoomUsers() {
 	var params = { id:chat_id };
 	$.get(url + "getChatUsers", params, function(data, status){
 		console.log(status);
-		console.log("Getting users of chat with id " + chat_id);
 		if (status == "success")
 		{
 			$("#userList").empty();
@@ -197,9 +188,24 @@ function addComment() {
 		console.log(status);
 		if (status == "success")
 		{
-			console.log("Posted comment to room with id " + chat_id);
 			$("#commentBox").val('');
 		}
+	});
+}
+
+function createChatRoom() {
+	// Get the name
+	var name = $("#chatNamer").val();
+
+	if (name == "")
+		return;
+
+	// Set up the parameters to send to the Controller
+	var params = { name:name, adminId:user_id };
+
+	$.post(url + "postRoom", params, function(data, status){
+		console.log(status);
+		loadUserRooms();
 	});
 }
 
