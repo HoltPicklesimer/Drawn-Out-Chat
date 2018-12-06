@@ -244,7 +244,7 @@ function loadUserListToAdd(userId) {
 		 {
 		 	var inRoom = false;
 		 	for (var i = 0; i < data.length; ++i)
-		 		if (data[i].id == userId)
+		 		if (data[i].user_id == userId)
 		 			inRoom = true;
 		 	$("#errorMessage").empty();
 		 	if (inRoom)
