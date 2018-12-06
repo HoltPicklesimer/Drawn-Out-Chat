@@ -59,12 +59,9 @@ function loadUserRooms() {
 
 /* When the room is requested, load the name, image, comment, and users. */
 function loadRoom() {
-	console.log("load Room function !!");
+	// the chat room has been deleted, get kicked out
 	if (!document.getElementById("selectRoom").options[roomIndex])
-	{
 		document.getElementById("selectRoom").selectedIndex = "0";
-		console.log("Set to 0 !!!!!!!!!");
-	}
 	roomIndex = document.getElementById("selectRoom").selectedIndex;
 	chat_id = document.getElementById("selectRoom").options[roomIndex].value;
 	// Set up the parameters to send to the Controller
@@ -221,6 +218,7 @@ function createChatRoom() {
 	});
 }
 
+/* When the admin deletes the chat room. */
 function deleteChatRoom() {
 	// Set up the parameters to send to the Controller
 	var params = { id:chat_id };
@@ -228,9 +226,19 @@ function deleteChatRoom() {
 	$.post(url + "deleteRoom", params, function(data, status){
 		console.log(status);
 		 if (status == "success")
-		 {
-			loadUserRooms(true);
-		 }
+			loadUserRooms();
+	});
+}
+
+/* Adding a user to a chat room. */
+function addUser(user_id) {
+	// Set up the parameters to send to the Controller
+	var params = { chatId:chat_id, userId:user_id };
+
+	$.post(url + "addUser", params, function(data, status){
+		console.log(status);
+		 if (status == "success")
+			loadRoomUsers();
 	});
 }
 
