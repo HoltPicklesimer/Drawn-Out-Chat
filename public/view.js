@@ -275,9 +275,9 @@ function addUser(userId) {
 }
 
 /* Remove a user from the chat room. */
-function removeUser(userId) {
+function removeUser(id) {
 	// Set up the parameters to send to the Controller
-	var params = { chatId:chat_id, userId:userId };
+	var params = { id:id };
 
 	$.post(url + "removeUserFromRoom", params, function(data, status){
 		console.log(status);
