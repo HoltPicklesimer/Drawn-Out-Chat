@@ -176,7 +176,10 @@ function loadRoomUsers() {
 /* Clear the users when focus is lost on the search bar */
 function clearUserSearch() {
 	if ($("#searchedUsers") == "")
+	{
 		$("#searchedUsers").empty();
+		$("#errorMessage").empty();
+	}
 }
 
 /* When a user adds a comment to the Chat room */
