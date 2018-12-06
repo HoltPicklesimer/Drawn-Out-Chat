@@ -89,14 +89,13 @@ function putImage(req, res) {
 
 // Remove a user from a chat room
 function removeUserFromRoom(req, res) {
-	var user_id = req.body.userId;
-	var chat_id = req.body.chatId;
-	console.log("Removing user of id " + user_id + " from room with id " + chat_id);
-	chatModel.removeUserInDb(user_id, chat_id, function (error, result) {
+	var id = req.body.id;
+	console.log("Removing user of chat_user id " + id);
+	chatModel.removeUserInDb(id, function (error, result) {
 		if (error) {
 			res.status(500).json({success:false, data:error});
 		} else {
-			result = { success:true, removedUserFromRoom: { user_id:user_id, chat_id:chat_id } };
+			result = { success:true, removedUserFromRoom: { id:id } };
 			res.status(200).json(result);
 		}
 	});

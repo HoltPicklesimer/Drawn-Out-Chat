@@ -10,7 +10,7 @@ var queries = [
 	"INSERT INTO chat_rooms (name, admin_id, image_data) VALUES ($1::varchar, $2::int, '{\"clickX\":[],\"clickY\":[],\"clickDrag\":[],\"clickColor\":[],\"clickSize\":[]}') RETURNING id",
 	"INSERT INTO chat_users (user_id, chat_id) VALUES ($1::int, $2::int)", 
 	"UPDATE chat_rooms SET image_data = $2::text WHERE id = $1::int",
-	"DELETE FROM chat_users WHERE user_id = $1::int AND chat_id = $2::int",
+	"DELETE FROM chat_users WHERE id = $1::int",
 	"DELETE FROM comments WHERE chat_id = $1::int",
 	"DELETE FROM chat_users WHERE chat_id = $1::int",
 	"DELETE FROM chat_rooms WHERE id = $1::int"
@@ -132,9 +132,9 @@ function updateImageInDb(id, image_data, callback) {
 }
 
 // Remove the user from a chat room in the database
-function removeUserInDb(user_id, chat_id, callback) {
+function removeUserInDb(id, callback) {
 	var sql = queries[6];
-	var params = [user_id, chat_id];
+	var params = [id];
 
 	pool.query(sql, params, function(err, result){
 
@@ -143,7 +143,7 @@ function removeUserInDb(user_id, chat_id, callback) {
 			console.log(err);
 			callback(err, null);
 		}else{
-			console.log("Removed user with id " + user_id + " from room with id " + chat_id);
+			console.log("Removed user with chat_user id " + id);
 			callback(null);
 		}
 
