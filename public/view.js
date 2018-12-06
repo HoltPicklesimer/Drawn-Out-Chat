@@ -230,6 +230,30 @@ function deleteChatRoom() {
 	});
 }
 
+/* The first portion of adding a user to a chat room,
+ * call addUser to add the user once it is confirmed
+ * the user is not already in the room. */
+function loadUserListToAdd(user_id) {
+	// Set up the parameters to send to the Controller
+	var params = { id:chat_id };
+
+	$.get(url + "getChatUsers", params, function(data, status){
+		console.log(status);
+		 if (status == "success")
+		 {
+		 	var inRoom = false;
+		 	for (var i = 0; i < data.length; ++i)
+		 		if (data[i].id == user_id)
+		 			inRoom = true;
+		 	$("#errorMessage").empty();
+		 	if (inRoom)
+		 		document.getElementById("errorMessage").innerHTML = "You can't add a user that is already in the chat room!";
+		 	else
+				addUser(user_id);
+		}
+	});
+}
+
 /* Adding a user to a chat room. */
 function addUser(user_id) {
 	// Set up the parameters to send to the Controller
