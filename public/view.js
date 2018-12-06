@@ -114,7 +114,7 @@ function loadComments(id) {
 				$("#commentSection").append("<hr style='width:90%' />");
 				$("#commentSection").append("<button class='btn btn-danger' onclick='removeComment(\"" + data[i].id + "\")'>-</button>");
 				$("#commentSection").append(" " + data[i].username + " said on " + dateString + "<br/><br/>");
-				$("#commentSection").append("<p style='width: 75%;padding: 0px 60px'>" + data[i].content + "</p>");
+				$("#commentSection").append("<p style='width: 90%;padding: 0px 60px'>" + data[i].content + "</p>");
 			}
 		}
 	});
@@ -165,7 +165,7 @@ function loadRoomUsers() {
 			for (var i = 0; i < data.length; ++i)
 			{
 				if (isAdmin && user_id != data[i].user_id)
-					$("#userList").append("<button class='btn btn-danger' onclick='removeUsers(\""
+					$("#userList").append("<button class='btn btn-danger' onclick='removeUser(\""
 					+ data[i].id + "\")'>-</button> ");
 				$("#userList").append(data[i].username + "<br/>");
 			}
@@ -271,6 +271,30 @@ function addUser(userId) {
 		console.log(status);
 		 if (status == "success")
 			loadRoomUsers();
+	});
+}
+
+/* Remove a user from the chat room. */
+function removeUser(userId) {
+	// Set up the parameters to send to the Controller
+	var params = { chatId:chat_id, userId:userId };
+
+	$.post(url + "removeUserFromRoom", params, function(data, status){
+		console.log(status);
+		 if (status == "success")
+			loadRoomUsers();
+	});
+}
+
+/* Remove a user from the chat room. */
+function removeComment(id) {
+	// Set up the parameters to send to the Controller
+	var params = { id:id };
+
+	$.post(url + "deleteComment", params, function(data, status){
+		console.log(status);
+		 if (status == "success")
+			loadComments();
 	});
 }
 
