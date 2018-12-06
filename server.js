@@ -4,6 +4,38 @@ const port = process.env.PORT || 5000;
 const path = require("path");
 const fs = require("fs");
 
+// TEST //
+const WebSocket = require('ws');
+const url = 'https://gentle-tundra-31449.herokuapp.com/';
+const connection = new WebSocket(url);
+
+const wss = new WebSocket.Server({ port: port });
+
+wss.on('connection', ws => {
+  ws.on('message', message => {
+    console.log(`Received message => ${message}`);
+  })
+  ws.send('send ho!');
+})
+
+connection.onopen = () => {
+  console.log('open hello');
+  alert('open hello');
+}
+
+connection.onerror = error => {
+  console.log(`WebSocket error: ${error}`)
+}
+
+connection.onopen = () => {
+  connection.send('onopen hey');
+}
+
+connection.onmessage = e => {
+  console.log('onmessage ' + e.data);
+}
+// END OF TEST //
+
 const userController = require("./controllers/userController");
 const chatController = require("./controllers/chatController");
 const commentController = require("./controllers/commentController");
