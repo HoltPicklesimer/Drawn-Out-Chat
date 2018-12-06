@@ -240,6 +240,7 @@ function loadUserListToAdd(userId) {
 	$.get(url + "getChatUsers", params, function(data, status){
 		console.log(status);
 		console.log(data);
+		console.log(userId);
 		 if (status == "success")
 		 {
 		 	var inRoom = false;
