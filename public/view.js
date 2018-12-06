@@ -245,8 +245,11 @@ function loadUserListToAdd(userId) {
 		 {
 		 	var inRoom = false;
 		 	for (var i = 0; i < data.length; ++i)
+		 	{
 		 		if (data[i].user_id == userId)
 		 			inRoom = true;
+		 		console.log(inRoom);
+		 	}
 		 	$("#errorMessage").empty();
 		 	if (inRoom)
 		 		document.getElementById("errorMessage").innerHTML = "You can't add a user that is already in the chat room!";
