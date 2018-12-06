@@ -49,7 +49,7 @@ function loadUserRooms() {
 			$("#selectRoom").empty();
 			for (var i = 0; i < data.length; ++i)
 				$("#selectRoom").append("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
-			if (typeof chat_id == 'undefined' || !document.getElementById("selectRoom").options[roomIndex].value)
+			if (typeof chat_id == 'undefined' || !document.getElementById("selectRoom").options[roomIndex])
 				loadRoom();
 			else
 				document.getElementById("selectRoom").selectedIndex = roomIndex;
@@ -60,7 +60,7 @@ function loadUserRooms() {
 /* When the room is requested, load the name, image, comment, and users. */
 function loadRoom() {
 	console.log("load Room function !!");
-	if (!document.getElementById("selectRoom").options[roomIndex].value)
+	if (!document.getElementById("selectRoom").options[roomIndex])
 	{
 		document.getElementById("selectRoom").selectedIndex = "0";
 		console.log("Set to 0 !!!!!!!!!");
