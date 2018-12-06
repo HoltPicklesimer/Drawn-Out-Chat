@@ -239,6 +239,7 @@ function loadUserListToAdd(userId) {
 
 	$.get(url + "getChatUsers", params, function(data, status){
 		console.log(status);
+		console.log(data);
 		 if (status == "success")
 		 {
 		 	var inRoom = false;
