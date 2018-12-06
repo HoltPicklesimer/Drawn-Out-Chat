@@ -148,7 +148,7 @@ function searchUsers() {
 			console.log(data);
 			$("#searchedUsers").empty();
 			for (var i = 0; i < data.length; ++i)
-				$("#searchedUsers").append("<button class='btn btn-success' onclick='addUser(\""
+				$("#searchedUsers").append("<button class='btn btn-success' onclick='loadUserListToAdd(\""
 					+ data[i].id + "\")'>+</button> " + data[i].username + "<br/>");
 		}
 	});
