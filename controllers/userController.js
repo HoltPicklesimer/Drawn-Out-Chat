@@ -103,4 +103,5 @@ function searchUsers(req, res) {
 	});
 }
 
-module.exports = { getUserById:getUserById, getUserByInfo:getUserByInfo, getUserRooms:getUserRooms, postUser:postUser, searchUsers:searchUsers };
+module.exports = { getUserById:getUserById, getUserByInfo:getUserByInfo, getUserRooms:getUserRooms, postUser:postUser,
+									 searchUsers:searchUsers, handleLogin:handleLogin, handleLogout:handleLogout };
