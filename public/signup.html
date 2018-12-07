@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Drawn-Out Chat Sign-Up</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Latest compiled and minified CSS for Bootstrap -->
+	<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	</script>
+
+	<!-- Latest compiled JavaScript for Bootstrap -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+	</script>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+	<link rel="stylesheet" href="paint.css">
+
+	<script type="text/javascript" src="signup.js"></script>
+
+</head>
+
+<body>
+
+<h2 id="chatName">Sign-Up</h2>
+
+<div class="row" style="width:99%"> <!-- 99% width removes the horizontal scrollbar -->
+
+	<div class="col-sm-4"></div>
+	<div class="col-sm-4">
+		<h2>Enter a Username and Password to Sign-Up</h2>
+		Enter Username: <input type="text" id="username"><br/>
+		Enter Password: <input type="text" id="password"><br/>
+		Enter Password Again: <input type="text" id="password2"><br/>
+		<div id="errorMessage"></div>
+		<div id="success"></div>
+		<button class="btn btn-info" onclick="signup()">Sign-Up</button>
+	</div>
+	<div class="col-sm-4"></div>
+
+</div>
+
+</body>
+</html>
