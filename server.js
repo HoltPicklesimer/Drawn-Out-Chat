@@ -47,8 +47,8 @@ app .post("/getUserById", userController.getUserById) // id
 		.post("/deleteComment", commentController.deleteComment) // id
 		.get("/searchUsers", userController.searchUsers) // item
 		.post("/deleteRoom", chatController.deleteRoom) // id
-		.post("/login", userModel.handleLogin)
-		.post("/logout", userModel.handleLogout);
+		.post("/login", userController.handleLogin)
+		.post("/logout", userController.handleLogout);
 
 
 
