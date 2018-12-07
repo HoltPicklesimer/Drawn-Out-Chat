@@ -16,7 +16,6 @@ function signup() {
 	var params = { username:user };
 	$.post(url + "checkUsersWithUsername", params, function(data, status){
 		console.log(status);
-
 		if (data.success)
 			displayError();
 		else

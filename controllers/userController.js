@@ -53,10 +53,15 @@ function handleLogin(req, res) {
 		if (error || result == null || result.length != 1) {
 			res.status(200).json({success:false, data:error});
 		} else {
-			var id = result[0].id;
-			req.session.user = id;
-			result = {success: true};
-			res.json(result);
+			bcrypt.compare(password, result[0].password, function(err, hres) {
+				if (hres)
+				{
+				  var id = result[0].id;
+					req.session.user = id;
+					result = {success: true};
+					res.json(result);
+				}
+			});
 		}
 	});
 }
