@@ -3,7 +3,7 @@ var chat_id;
 var roomIndex = 0;
 var isAdmin = false;
 
-$(function(){ setInterval(updateOnTimer, 1000);}); // set a clock to update every second to reload the comments
+// $(function(){ setInterval(updateOnTimer, 1000);}); // set a clock to update every second to reload the comments
 
 var url = "https://gentle-tundra-31449.herokuapp.com/";
 
