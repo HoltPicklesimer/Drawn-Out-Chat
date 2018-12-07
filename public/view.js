@@ -9,13 +9,11 @@ var url = "https://gentle-tundra-31449.herokuapp.com/";
 
 // Update on the clock cycle
 function updateOnTimer() {
-	try {
+		if (chat_id == 'undefined')
+			return;
 		loadComments();
 		loadRoomUsers();
 		loadUserRooms();
-	} catch (err) {
-		console.log(err);
-	}
 }
 
 // Start the session to get the user id, then call loadUser to load the user info
@@ -84,6 +82,8 @@ function loadRoom() {
 		document.getElementById("selectRoom").selectedIndex = "0";
 	roomIndex = document.getElementById("selectRoom").selectedIndex;
 	chat_id = document.getElementById("selectRoom").options[roomIndex].value;
+	if (chat_id == 'undefined')
+		return;
 	// Set up the parameters to send to the Controller
 	var params = { id:chat_id };
 	// Use jQuery to make the request
