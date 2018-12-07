@@ -3,30 +3,31 @@ var chat_id;
 var roomIndex = 0;
 var isAdmin = false;
 
-// $(function(){ setInterval(updateOnTimer, 1000);}); // set a clock to update every second to reload the comments
+$(function(){ setInterval(updateOnTimer, 1000);}); // set a clock to update every second to reload the comments
 
 var url = "https://gentle-tundra-31449.herokuapp.com/";
 
-startSession();
+// Update on the clock cycle
+function updateOnTimer() {
+	loadComments();
+	loadRoomUsers();
+	loadUserRooms();
+}
 
+// Start the session to get the user id, then call loadUser to load the user info
 function startSession() {
 	var params = {};
 	$.post(url + "getSessionId", params, function(data, status){
 		console.log(status);
 		if (status == "success")
 		{
-			console.log("RESULT/DATA: " + data.id);
 			user_id = data.id;
 			loadUser();
 		}
 	});
 }
 
-function updateOnTimer() {
-	loadComments();
-	loadRoomUsers();
-	loadUserRooms();
-}
+
 
 /* When a user adds a change to the image, save it to the database */
 function saveImage() {
