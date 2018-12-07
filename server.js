@@ -52,7 +52,10 @@ app .post("/getUserById", userController.getUserById) // id
 		.post("/getSessionId", function(req, res) {
 			var result = {success: false};
 			if (req.session.user)
+			{
+				console.log("SESSION ID: " + req.session.user);
 				result = {success: true, id:req.session.user};
+			}
 			res.json(result);
 		});
 
