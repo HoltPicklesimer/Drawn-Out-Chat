@@ -9,11 +9,34 @@ var url = "https://gentle-tundra-31449.herokuapp.com/";
 
 // Update on the clock cycle
 function updateOnTimer() {
-		if (chat_id == 'undefined')
-			return;
-		loadComments();
-		loadRoomUsers();
-		loadUserRooms();
+	// Kick off if not logged in
+	checkLoggedIn();
+	// Clear everything if there are no rooms
+	if (chat_id == 'undefined')
+	{
+		$("#chatName").empty();
+		$("#canvasDiv").empty();
+		$("#admin").empty();
+		$("#selectRoom").empty();
+		$("#userSearch").empty();
+		$("#errorMessage").empty();
+		$("#searchedUsers").empty();
+		$("#userList").empty();
+		return;
+	}
+	loadComments();
+	loadRoomUsers();
+	loadUserRooms();
+}
+
+// Kick person off if not logged in
+function checkLoggedIn() {
+	var params = {};
+	$.post(url + "getSessionId", params, function(data, status){
+		console.log(status);
+		if (status != "success")
+			window.location.href = url + "login.html";
+	});
 }
 
 // Start the session to get the user id, then call loadUser to load the user info
@@ -28,8 +51,6 @@ function startSession() {
 		}
 	});
 }
-
-
 
 /* When a user adds a change to the image, save it to the database */
 function saveImage() {
