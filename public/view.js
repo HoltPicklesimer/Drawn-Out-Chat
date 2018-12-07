@@ -29,6 +29,15 @@ function updateOnTimer() {
 	loadUserRooms();
 }
 
+// Log the user out
+function logout() {
+	$.get(url + "logout", params, function(data, status){
+		console.log(status);
+		if (data.success)
+			window.location.href = url + "login.html";
+	});
+}
+
 // Kick person off if not logged in
 function checkLoggedIn() {
 	var params = {};
