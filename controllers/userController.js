@@ -29,6 +29,22 @@ function getUserByInfo(req, res) {
 	});
 }
 
+// Get any users with the username
+function checkUsersWithUsername(req, res) {
+	var username = req.body.username;
+	console.log("Getting Users with username " + username);
+	userModel.getUsersWithUsernameFromDb(username, function (error, result) {
+		if (error) {
+			res.status(500).json({success:false, data:error});
+		}
+		else if (result == null || result.length < 1) {
+			res.status(200).json({success:false});
+		} else {
+			res.status(200).json({success:true});
+		}
+	});
+}
+
 // Log the user in
 function handleLogin(req, res) {
 	var result = {success: false};
@@ -104,4 +120,4 @@ function searchUsers(req, res) {
 }
 
 module.exports = { getUserById:getUserById, getUserByInfo:getUserByInfo, getUserRooms:getUserRooms, postUser:postUser,
-									 searchUsers:searchUsers, handleLogin:handleLogin, handleLogout:handleLogout };
+									 searchUsers:searchUsers, handleLogin:handleLogin, handleLogout:handleLogout, checkUsersWithUsername:checkUsersWithUsername };
