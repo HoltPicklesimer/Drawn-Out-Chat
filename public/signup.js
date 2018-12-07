@@ -20,7 +20,7 @@ function signup() {
 		if (data.id)
 			displayError();
 		else
-			insertUser();
+			insertUser(user, pass);
 	});
 }
 
@@ -30,7 +30,7 @@ function displayError() {
 }
 
 // display an error if there is invalid input
-function insertUser() {
+function insertUser(user, pass) {
 	console.log("inserting user");
 	var params = { username:user, password:pass };
 	$.post(url + "postUser", params, function(data, status){
