@@ -129,9 +129,22 @@ function loadRoom() {
 			$("#chatName").html(data.name);
 			$("#admin").html(data.username);
 			if (user_id == data.admin_id)
+			{
 				isAdmin = true;
-			else
 				$("#addUserDiv").empty();
+				$("#addUserDiv").append('<div id="addUserDiv">\n');
+				$("#addUserDiv").append('<button id="deleteRoomButton" class="btn btn-danger" \
+					onclick="deleteChatRoom()" style="margin: 0 auto">Delete Chat Room</button>\n');
+				$("#addUserDiv").append('<h4 class="right-col">Search Users to Add to Chat:</h4>\n');
+				$("#addUserDiv").append('<input type="text" id="userSearch" class="form-control" \
+					onchange="searchUsers()" onblur="clearUserSearch()" style="width:65%; margin: 0 auto" />\n');
+				$("#addUserDiv").append('<br/><div id="errorMessage"></div><div id="searchedUsers"></div></div>\n');
+			}
+			else
+			{
+				isAdmin = false;
+				$("#addUserDiv").empty();
+			}
 			loadImage(data.image_data);
 			loadRoomUsers();
 			loadComments(chat_id);
@@ -154,6 +167,7 @@ function loadImage(data) {
   redraw();
 }
 
+// Load the Comments
 function loadComments(id) {
 	var params = { id:chat_id };
 	$.get(url + "getRoomComments", params, function(data, status){
@@ -200,7 +214,6 @@ function searchUsers() {
 		console.log(status);
 		if (status == "success")
 		{
-			console.log(data);
 			$("#searchedUsers").empty();
 			for (var i = 0; i < data.length; ++i)
 				$("#searchedUsers").append("<button class='btn btn-success' onclick='loadUserListToAdd(\""
