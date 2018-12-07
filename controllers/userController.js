@@ -21,7 +21,7 @@ function getUserByInfo(req, res) {
 	console.log("Getting User with username " + username + " and password " + password);
 	userModel.getUserFromDbByInfo(username, password, function (error, result) {
 		if (error || result == null || result.length != 1) {
-			res.status(500).json({success:false, data:error});
+			res.status(200).json({success:false, data:error});
 		} else {
 			var user = result[0];
 			res.status(200).json(result[0]);
