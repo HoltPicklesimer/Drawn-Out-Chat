@@ -32,7 +32,7 @@ function updateOnTimer() {
 // Log the user out
 function logout() {
 	var params = {};
-	$.get(url + "logout", params, function(data, status){
+	$.post(url + "logout", params, function(data, status){
 		console.log(status);
 		console.log(data.success);
 		if (data.success)
