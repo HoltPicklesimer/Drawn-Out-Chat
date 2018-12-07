@@ -11,13 +11,13 @@ startSession();
 
 function startSession() {
 	var params = {};
-	var user_id = $.post(url + "getSessionId", params, function(data, status){
+	$.post(url + "getSessionId", params, function(data, status){
 		console.log(status);
 		if (status == "success")
 		{
 			console.log("RESULT/DATA: " + data.id);
 			user_id = data.id;
-			loadUser(user_id);
+			loadUser();
 		}
 	});
 }
@@ -44,7 +44,7 @@ function saveImage() {
 /* Load the user info */
 function loadUser (id) {
 	// load the basic user info
-	var params = { id:id };
+	var params = { id:user_id };
 	$.post(url + "getUserById", params, function(data, status){
 		console.log(status);
 		if (status == "success")
