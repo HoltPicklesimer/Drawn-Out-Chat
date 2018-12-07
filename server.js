@@ -3,45 +3,21 @@ const app = express();
 const port = process.env.PORT || 5000;
 const path = require("path");
 const fs = require("fs");
+var session = require('express-session');
 
-// TEST //
-const WebSocket = require('ws');
-const url = 'https://gentle-tundra-31449.herokuapp.com/';
-const connection = new WebSocket(url);
-
-const wss = new WebSocket.Server({ port: port });
-
-wss.on('connection', ws => {
-  ws.on('message', message => {
-    console.log(`Received message => ${message}`);
-  })
-  ws.send('send ho!');
-})
-
-connection.onopen = () => {
-  console.log('open hello');
-  alert('open hello');
-}
-
-connection.onerror = error => {
-  console.log(`WebSocket error: ${error}`)
-}
-
-connection.onopen = () => {
-  connection.send('onopen hey');
-}
-
-connection.onmessage = e => {
-  console.log('onmessage ' + e.data);
-}
-// END OF TEST //
+// set up session
+app.use(session({
+  secret: 'paint-secret-key',
+  resave: false,
+  saveUninitialized: true
+}));
 
 const userController = require("./controllers/userController");
 const chatController = require("./controllers/chatController");
 const commentController = require("./controllers/commentController");
 
-app.use(express.json());       // to support JSON-encoded bodies
-app.use(express.urlencoded()); // to support URL-encoded bodies
+app.use(express.json());                      // to support JSON-encoded bodies
+app.use(express.urlencoded({extended:true})); // to support URL-encoded bodies
 
 // Set up the static and views directories
 app.use(express.static(path.join(__dirname, 'public')));
@@ -56,7 +32,7 @@ app.listen(app.get('port'), function(req, res){
 });
 
 app.get("/getUserById", userController.getUserById) // id
-		.get("/getUserByInfo", userController.getUserByInfo) // username, password
+		.post("/getUserByInfo", userController.getUserByInfo) // username, password
 		.get("/getUserRooms", userController.getUserRooms) // id
 		.post("/postUser", userController.postUser) // username, password
 		.get("/getChatRoom", chatController.getChatRoom) // id
