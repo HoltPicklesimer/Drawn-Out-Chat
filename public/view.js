@@ -81,9 +81,12 @@ function loadRoom() {
 	if (!document.getElementById("selectRoom").options[roomIndex])
 		document.getElementById("selectRoom").selectedIndex = "0";
 	roomIndex = document.getElementById("selectRoom").selectedIndex;
-	chat_id = document.getElementById("selectRoom").options[roomIndex].value;
-	if (chat_id == 'undefined')
+	if ($('#selectRoom').has('option').length == 0)
+	{
+		chat_id = 'undefined';
 		return;
+	}
+	chat_id = document.getElementById("selectRoom").options[roomIndex].value;
 	// Set up the parameters to send to the Controller
 	var params = { id:chat_id };
 	// Use jQuery to make the request
