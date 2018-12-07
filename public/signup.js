@@ -20,7 +20,7 @@ function signup() {
 		if (data.id)
 			displayError();
 		else
-			displaySuccess();
+			insertUser();
 	});
 }
 
@@ -30,8 +30,13 @@ function displayError() {
 }
 
 // display an error if there is invalid input
-function displaySuccess() {
-	$("#success").html("User account created.");
+function insertUser() {
+	var params = { username:user, password:pass };
+	$.post(url + "postUser", params, function(data, status){
+		console.log(status);
+		if (data.success)
+			$("#success").html("User account created.");
+	});
 }
 
 // clear messages when the sign-up button is pressed
