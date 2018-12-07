@@ -31,7 +31,7 @@ app.listen(app.get('port'), function(req, res){
 	console.log("Listening on port " + app.get('port'));
 });
 
-app.post("/getUserById", userController.getUserById) // id
+app .post("/getUserById", userController.getUserById) // id
 		.post("/getUserByInfo", userController.getUserByInfo) // username, password
 		.get("/getUserRooms", userController.getUserRooms) // id
 		.post("/postUser", userController.postUser) // username, password
@@ -46,4 +46,23 @@ app.post("/getUserById", userController.getUserById) // id
 		.post("/postComment", commentController.postComment) // chatId, userId, content
 		.post("/deleteComment", commentController.deleteComment) // id
 		.get("/searchUsers", userController.searchUsers) // item
-		.post("/deleteRoom", chatController.deleteRoom); // id
+		.post("/deleteRoom", chatController.deleteRoom) // id
+		.post("/login", userModel.handleLogin)
+		.post("/logout", userModel.handleLogout);
+
+
+
+
+// Middle-Ware: check if logged in
+function verifyLogin(req, res, next) {
+	if (req.session.user) {
+		// They are logged in
+		// pass things along to the next function
+		next();
+	} else {
+		// They are not logged in
+		// Send back an unauthorized status
+		var result = {succes:false, message: "Access Denied"};
+		response.status(401).json(result);
+	}
+}

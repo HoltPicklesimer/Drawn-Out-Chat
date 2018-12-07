@@ -29,6 +29,36 @@ function getUserByInfo(req, res) {
 	});
 }
 
+// Log the user in
+function handleLogin(req, res) {
+	var result = {success: false};
+	var username = req.body.username;
+	var password = req.body.password;
+
+	userModel.getUserFromDbByInfo(username, password, function(error, result) {
+		if (error || result == null || result.length != 1) {
+			res.status(500).json({success:false, data:error});
+		} else {
+			var user = result[0];
+			req.session.user = user.id;
+			result = {success: true};
+			res.json(result);
+		}
+	});
+}
+
+// Log the user out
+function handleLogout(req, res) {
+	var result = {success: false};
+
+	if (req.session.user) {
+		req.session.destroy();
+		result = {success: true};
+	}
+
+	res.json(result);
+}
+
 // Get the chat rooms of a user
 function getUserRooms(req, res) {
 	var id = req.query.id;
