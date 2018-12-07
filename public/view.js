@@ -17,7 +17,7 @@ function startSession() {
 		{
 			console.log("RESULT/DATA: " + data.id);
 			user_id = data.id;
-			loadUser();
+			loadUser(user_id);
 		}
 	});
 }
@@ -42,9 +42,9 @@ function saveImage() {
 }
 
 /* Load the user info */
-function loadUser () {
+function loadUser (id) {
 	// load the basic user info
-	var params = { id:user_id };
+	var params = { id:id };
 	$.post(url + "getUserById", params, function(data, status){
 		console.log(status);
 		if (status == "success")
