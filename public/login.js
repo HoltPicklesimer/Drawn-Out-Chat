@@ -4,7 +4,7 @@ function login() {
 	var user = $("#username").val();
 	var pass = $("#password").val();
 
-	if (!user || !pass)
+	if (user == "" || pass == "")
 		displayError();
 	else
 		clearError();
@@ -12,9 +12,9 @@ function login() {
 	var params = { username:user, password:pass };
 	$.post(url + "login", params, function(data, status){
 		console.log(status);
-		if (status == "success")
-			// window.location.href = url + "paint.html";
-		// else
+		if (data)
+			window.location.href = url + "paint.html";
+		else
 			displayError();
 	});
 }
