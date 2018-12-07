@@ -16,7 +16,7 @@ function login() {
 	$.post(url + "login", params, function(data, status){
 		console.log(status);
 		console.log(data.success);
-		if (!data.success)
+		if (data.success)
 			window.location.href = url + "paint.html";
 		else
 			displayError();
