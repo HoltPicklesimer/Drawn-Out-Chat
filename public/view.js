@@ -34,6 +34,7 @@ function logout() {
 	var params = {};
 	$.get(url + "logout", params, function(data, status){
 		console.log(status);
+		console.log(data.success);
 		if (data.success)
 			window.location.href = url + "login.html";
 	});

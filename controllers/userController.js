@@ -52,6 +52,7 @@ function handleLogout(req, res) {
 	var result = {success: false};
 
 	if (req.session.user) {
+		console.log("SESSION USER: " + true);
 		req.session.destroy();
 		result = {success: true};
 	}
