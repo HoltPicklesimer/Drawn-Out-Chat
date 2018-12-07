@@ -34,7 +34,7 @@ function checkLoggedIn() {
 	var params = {};
 	$.post(url + "getSessionId", params, function(data, status){
 		console.log(status);
-		if (success == false)
+		if (!data.success)
 			window.location.href = url + "login.html";
 	});
 }
@@ -44,7 +44,7 @@ function startSession() {
 	var params = {};
 	$.post(url + "getSessionId", params, function(data, status){
 		console.log(status);
-		if (status == true)
+		if (data.success)
 		{
 			user_id = data.id;
 			loadUser();
