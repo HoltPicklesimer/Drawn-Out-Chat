@@ -15,7 +15,7 @@ function updateOnTimer() {
 	if (chat_id == 'undefined')
 	{
 		$("#chatName").empty();
-		$("#canvasDiv").empty();
+		$("#canvas").empty();
 		$("#admin").empty();
 		$("#selectRoom").empty();
 		$("#userSearch").empty();
