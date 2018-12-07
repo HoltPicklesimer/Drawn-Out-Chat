@@ -19,7 +19,7 @@ function getUserByInfo(req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
 	console.log("Getting User with username " + username + " and password " + password);
-	userModel.getUserFromDbByInfo(username, password, function (error, result) {
+	userModel.getUserFromDbByInfo(username, function (error, result) {
 		if (error || result == null || result.length != 1) {
 			res.status(200).json({success:false, data:error});
 		} else {
@@ -49,7 +49,7 @@ function handleLogin(req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
 
-	userModel.getUserFromDbByInfo(username, password, function(error, result) {
+	userModel.getUserFromDbByInfo(username, function(error, result) {
 		if (error || result == null || result.length != 1) {
 			res.status(200).json({success:false, data:error});
 		} else {

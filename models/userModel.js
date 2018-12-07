@@ -32,7 +32,7 @@ function getUserFromDbById(id, callback) {
 }
 
 // Get a user from the database by info
-function getUserFromDbByInfo(username callback) {
+function getUserFromDbByInfo(username, callback) {
 	var sql = queries[1];
 	var params = [username];
 
