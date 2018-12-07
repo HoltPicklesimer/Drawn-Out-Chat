@@ -31,7 +31,7 @@ app.listen(app.get('port'), function(req, res){
 	console.log("Listening on port " + app.get('port'));
 });
 
-app.get("/getUserById", userController.getUserById) // id
+app.post("/getUserById", userController.getUserById) // id
 		.post("/getUserByInfo", userController.getUserByInfo) // username, password
 		.get("/getUserRooms", userController.getUserRooms) // id
 		.post("/postUser", userController.postUser) // username, password
