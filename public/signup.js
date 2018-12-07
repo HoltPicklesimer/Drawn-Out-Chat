@@ -16,6 +16,7 @@ function signup() {
 	var params = { username:user, password:pass };
 	$.post(url + "getUserByInfo", params, function(data, status){
 		console.log(status);
+		console.log(data);
 		console.log(data.success);
 		if (data.success)
 			displayError();
