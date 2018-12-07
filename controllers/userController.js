@@ -39,7 +39,7 @@ function handleLogin(req, res) {
 		if (error || result == null || result.length != 1) {
 			res.status(500).json({success:false, data:error});
 		} else {
-			var user = result[0];
+			var id = result[0].id;
 			req.session.user = user.id;
 			result = {success: true};
 			res.json(result);

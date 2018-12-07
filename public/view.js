@@ -1,4 +1,4 @@
-var user_id = 13;
+var user_id;
 var chat_id;
 var roomIndex = 0;
 var isAdmin = false;
@@ -6,6 +6,17 @@ var isAdmin = false;
 $(function(){ setInterval(updateOnTimer, 1000);}); // set a clock to update every second to reload the comments
 
 var url = "https://gentle-tundra-31449.herokuapp.com/";
+
+startSession();
+
+function startSession() {
+	var params = {};
+	var user_id = $.post(url + "getSessionId", params, function(data, status){
+		console.log(status);
+		if (status == "success")
+			user_id = data.id;
+	});
+}
 
 function updateOnTimer() {
 	loadComments();

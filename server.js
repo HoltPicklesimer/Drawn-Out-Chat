@@ -48,7 +48,13 @@ app .post("/getUserById", userController.getUserById) // id
 		.get("/searchUsers", userController.searchUsers) // item
 		.post("/deleteRoom", chatController.deleteRoom) // id
 		.post("/login", userController.handleLogin)
-		.post("/logout", userController.handleLogout);
+		.post("/logout", userController.handleLogout)
+		.post("/getSessionId", function(req, res) {
+			var result = {success: false};
+			if (req.session.user)
+				result = {success: true, id:req.session.user};
+			res.json(result);
+		});
 
 
 
