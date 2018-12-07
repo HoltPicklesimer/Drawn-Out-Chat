@@ -14,7 +14,10 @@ function startSession() {
 	var user_id = $.post(url + "getSessionId", params, function(data, status){
 		console.log(status);
 		if (status == "success")
+		{
 			user_id = data.id;
+			loadUser();
+		}
 	});
 }
 
