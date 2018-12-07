@@ -31,6 +31,7 @@ function displayError() {
 
 // display an error if there is invalid input
 function insertUser() {
+	console.log("inserting user");
 	var params = { username:user, password:pass };
 	$.post(url + "postUser", params, function(data, status){
 		console.log(status);
