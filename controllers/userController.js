@@ -37,7 +37,7 @@ function handleLogin(req, res) {
 
 	userModel.getUserFromDbByInfo(username, password, function(error, result) {
 		if (error || result == null || result.length != 1) {
-			res.status(500).json({success:false, data:error});
+			res.status(200).json({success:false, data:error});
 		} else {
 			var id = result[0].id;
 			req.session.user = id;
