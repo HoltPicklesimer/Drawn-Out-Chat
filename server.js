@@ -49,6 +49,7 @@ app .post("/getUserById", userController.getUserById) // id
 		.post("/deleteRoom", chatController.deleteRoom) // id
 		.post("/login", userController.handleLogin)
 		.post("/logout", userController.handleLogout)
+		.post("/checkUsersWithUsername", userController.checkUsersWithUsername)
 		.post("/getSessionId", function(req, res) {
 			var result = {success: false};
 			if (req.session.user)
