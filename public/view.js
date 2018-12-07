@@ -15,7 +15,7 @@ function startSession() {
 		console.log(status);
 		if (status == "success")
 		{
-			console.log("RESULT/DATA: " + data);
+			console.log("RESULT/DATA: " + data.id);
 			user_id = data.id;
 			loadUser();
 		}
