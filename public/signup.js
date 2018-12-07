@@ -13,14 +13,14 @@ function signup() {
 	else
 		clearMessages();
 
-	var params = { username:user, password:pass };
-	$.post(url + "getUserByInfo", params, function(data, status){
+	var params = { username:user };
+	$.post(url + "checkUsersWithUsername", params, function(data, status){
 		console.log(status);
 
 		if (data.id)
 			displayError();
 		else
-			insertUser(user);
+			insertUser(user, pass);
 	});
 }
 
@@ -30,9 +30,9 @@ function displayError() {
 }
 
 // display an error if there is invalid input
-function insertUser(user) {
+function insertUser(user, pass) {
 	console.log("inserting user");
-	var params = { username:user };
+	var params = { username:user, password:pass };
 	$.post(url + "postUser", params, function(data, status){
 		console.log(status);
 		if (data.success)
