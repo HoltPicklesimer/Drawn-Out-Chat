@@ -15,8 +15,7 @@ function login() {
 	var params = { username:user, password:pass };
 	$.post(url + "login", params, function(data, status){
 		console.log(status);
-		console.log(data);
-		if (data != 'undefined')
+		if (status == "success")
 			window.location.href = url + "paint.html";
 		else
 			displayError();
