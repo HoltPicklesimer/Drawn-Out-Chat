@@ -9,9 +9,13 @@ var url = "https://gentle-tundra-31449.herokuapp.com/";
 
 // Update on the clock cycle
 function updateOnTimer() {
-	loadComments();
-	loadRoomUsers();
-	loadUserRooms();
+	try {
+		loadComments();
+		loadRoomUsers();
+		loadUserRooms();
+	} catch (err) {
+		console.log(err);
+	}
 }
 
 // Start the session to get the user id, then call loadUser to load the user info
