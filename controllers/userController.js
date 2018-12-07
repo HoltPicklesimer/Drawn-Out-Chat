@@ -1,5 +1,8 @@
 const userModel = require("../models/userModel.js");
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 // Get a user by id
 function getUserById(req, res) {
 	var id = req.body.id;

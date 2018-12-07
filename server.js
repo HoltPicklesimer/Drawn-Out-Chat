@@ -3,9 +3,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 const path = require("path");
 const fs = require("fs");
-const bcrypt = require('bcrypt');
 var session = require('express-session');
-const saltRounds = 10;
 
 // set up session
 app.use(session({

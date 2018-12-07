@@ -3,6 +3,10 @@ const connectionString = process.env.DATABASE_URL;
 const { Pool } = require("pg");
 const pool = new Pool({connectionString: connectionString});
 
+// for bcrypt
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 var queries = [
 	"SELECT id, username, password FROM users WHERE id = $1::int",
 	"SELECT id, username, password FROM users WHERE username = $1::varchar",
