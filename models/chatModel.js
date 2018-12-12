@@ -28,7 +28,7 @@ function getRoomFromDb(id, callback) {
 			console.log(err);
 			callback(err, null);
 		}
-
+		// log the result to the console
 		console.log("Found result: " + JSON.stringify(result.rows));
 
 		callback(null, result.rows);
@@ -47,7 +47,7 @@ function getChatUsersFromDb(id, callback) {
 			console.log(err);
 			callback(err, null);
 		}
-
+		// log the result to the console
 		console.log("Found result: " + JSON.stringify(result.rows));
 
 		callback(null, result.rows);
@@ -66,14 +66,14 @@ function getRoomCommentsFromDb(id, callback) {
 			console.log(err);
 			callback(err, null);
 		}
-
+		// log the result to the console
 		console.log("Found result: " + JSON.stringify(result.rows));
 
 		callback(null, result.rows);
 	});
 }
 
-// Insert a room into the database
+// Insert a room into the database, then add the admin to the room
 function insertRoomIntoDb(name, admin_id, callback) {
 	var sql = queries[3];
 	var params = [name, admin_id];
@@ -85,8 +85,10 @@ function insertRoomIntoDb(name, admin_id, callback) {
 			console.log(err);
 			callback(err, null);
 		}else{
+			// log the success of the query
 			console.log("Chat Room successfully added with name " + name + " by admin with id " + admin_id);
 			console.log("Found result: " + JSON.stringify(result.rows));
+			// add the admin that created the room
 			addUserToRoomInDb(admin_id, result.rows[0].id, callback);
 		}
 
@@ -105,6 +107,7 @@ function addUserToRoomInDb(user_id, chat_id, callback) {
 			console.log(err);
 			callback(err, null);
 		}else{
+			// log the success of the query
 			console.log("User with id " + user_id + " added to room with id " + chat_id);
 			callback(null);
 		}
@@ -124,6 +127,7 @@ function updateImageInDb(id, image_data, callback) {
 			console.log(err);
 			callback(err, null);
 		}else{
+			// log the success of the query
 			console.log("Updated image of room with id " + id);
 			callback(null);
 		}
@@ -143,6 +147,7 @@ function removeUserInDb(id, callback) {
 			console.log(err);
 			callback(err, null);
 		}else{
+			// log the success of the query
 			console.log("Removed user with chat_user id " + id);
 			callback(null);
 		}
@@ -166,7 +171,8 @@ function deleteRoomFromDb(id, callback) {
 			console.log(err);
 			callback(err, null);
 		}else{
-			console.log("Removeing chat room with id " + id);
+			// start the next query
+			console.log("Removing chat room with id " + id);
 			deleteRoomRelationships(id, callback);
 		}
 
@@ -185,7 +191,8 @@ function deleteRoomRelationships(id, callback) {
 			console.log(err);
 			callback(err, null);
 		}else{
-			console.log("Removeing chat room with id " + id);
+			// start the next query
+			console.log("Removing chat room with id " + id);
 			deleteRoom(id, callback);
 		}
 
@@ -204,7 +211,8 @@ function deleteRoom(id, callback) {
 			console.log(err);
 			callback(err, null);
 		}else{
-			console.log("Removeing chat room with id " + id);
+			// log the success of the query
+			console.log("Removed chat room with id " + id);
 			callback(null);
 		}
 

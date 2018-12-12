@@ -28,7 +28,7 @@ function getUserFromDbById(id, callback) {
 			console.log(err);
 			callback(err, null);
 		}
-
+		// log the result to the console
 		console.log("Found result: " + JSON.stringify(result.rows));
 
 		callback(null, result.rows);
@@ -47,7 +47,7 @@ function getUserFromDbByInfo(username, callback) {
 			console.log(err);
 			callback(err, null);
 		}
-
+		// log the result to the console
 		console.log("Found result: " + JSON.stringify(result.rows));
 
 		callback(null, result.rows);
@@ -68,7 +68,7 @@ function getUserRoomsFromDb(id, callback) {
 			console.log(err);
 			callback(err, null);
 		}
-
+		// log the result to the console
 		console.log("Found result: " + JSON.stringify(result.rows));
 
 		callback(null, result.rows);
@@ -94,6 +94,7 @@ function insertUserIntoDb(username, password, callback) {
 				console.log(err);
 				callback(err, null);
 			}else{
+				// log the success of the query
 				console.log("User successfully added with username " + username + " and password " + password);
 				callback(null);
 			}
@@ -114,7 +115,7 @@ function searchUsers(item, callback) {
 			console.log(err);
 			callback(err, null);
 		}
-
+		// log the result to the console
 		console.log("Found result: " + JSON.stringify(result.rows));
 
 		callback(null, result.rows);
@@ -133,7 +134,7 @@ function getUsersWithUsernameFromDb(username, callback) {
 			console.log(err);
 			callback(err, null);
 		}
-
+		// log the result to the console
 		console.log("Found result: " + JSON.stringify(result.rows));
 
 		callback(null, result.rows);

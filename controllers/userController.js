@@ -46,7 +46,7 @@ function checkUsersWithUsername(req, res) {
 	});
 }
 
-// Log the user in
+// Log the user in, use bcrypt to compare the password and hash
 function handleLogin(req, res) {
 	var result = {success: false};
 	var username = req.body.username;

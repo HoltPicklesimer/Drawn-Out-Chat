@@ -12,6 +12,7 @@ app.use(session({
   saveUninitialized: true
 }));
 
+// the controllers
 const userController = require("./controllers/userController");
 const chatController = require("./controllers/chatController");
 const commentController = require("./controllers/commentController");
@@ -31,6 +32,7 @@ app.listen(app.get('port'), function(req, res){
 	console.log("Listening on port " + app.get('port'));
 });
 
+// the web service endpoints
 app .post("/getUserById", userController.getUserById) // id
 		.post("/getUserByInfo", userController.getUserByInfo) // username, password
 		.get("/getUserRooms", userController.getUserRooms) // id
@@ -56,20 +58,3 @@ app .post("/getUserById", userController.getUserById) // id
 				result = {success: true, id:req.session.user};
 			res.json(result);
 		});
-
-
-
-
-// Middle-Ware: check if logged in
-function verifyLogin(req, res, next) {
-	if (req.session.user) {
-		// They are logged in
-		// pass things along to the next function
-		next();
-	} else {
-		// They are not logged in
-		// Send back an unauthorized status
-		var result = {succes:false, message: "Access Denied"};
-		response.status(401).json(result);
-	}
-}

@@ -23,7 +23,7 @@ function getCommentFromDb(id, callback) {
 			console.log(err);
 			callback(err, null);
 		}
-
+		// log the result to the console
 		console.log("Found result: " + JSON.stringify(result.rows));
 
 		callback(null, result.rows);
@@ -44,6 +44,7 @@ function insertCommentIntoDb(chat_id, user_id, content, callback) {
 			console.log(err);
 			callback(err, null);
 		}else{
+			// log the success of the query
 			console.log("Inserted Comment from user with id " + user_id + ", added to room with id " + chat_id);
 			callback(null);
 		}
@@ -65,6 +66,7 @@ function deleteCommentFromDb(id, callback) {
 			console.log(err);
 			callback(err, null);
 		}else{
+			// log the success of the query
 			console.log("Removed Comment with id " + id);
 			callback(null);
 		}

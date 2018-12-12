@@ -35,7 +35,7 @@
 	background-color: lightblue;
 }
 
-#chatName {
+#chatName, .title2 {
 	padding: 0px 30px;
 }
 
@@ -52,4 +52,34 @@
 
 #searchedUsers {
 	padding:0px 10px;
+}
+
+td {
+	padding: 0px 15px;
+}
+
+.title {
+	text-align: center;
+}
+
+.pad1 {
+	padding: 5px 15px;
+}
+
+.form1 {
+	background-color: lightgray;
+	border: 1px solid black;
+	border-radius: 25px;
+}
+
+.bg1 {
+	background-image:url('watercolor.jpg');
+	background-repeat: repeat;
+	background-size: 1000px
+}
+
+.titlebar {
+	background-color: #232323;
+	color: white;
+	box-shadow: 10px 10px 5px darkgray;
 }

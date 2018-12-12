@@ -1,5 +1,6 @@
 var url = "https://gentle-tundra-31449.herokuapp.com/";
 
+// Log the user in
 function login() {
 	var user = $("#username").val();
 	var pass = $("#password").val();

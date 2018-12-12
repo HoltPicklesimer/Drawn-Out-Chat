@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Drawn-Out Chat Log-In</title>
+  <title>Drawn-Out Chat Sign-In</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -26,19 +26,34 @@
 
 </head>
 
-<body>
+<body class="bg1">
 
-<h2 id="chatName">Sign-In</h2>
+<div class="titlebar container-fluid">
+	<h2 class="title2">Sign-In</h2>
+</div>
+
+<br/>
+<br/>
+<br/>
 
 <div class="row" style="width:99%"> <!-- 99% width removes the horizontal scrollbar -->
 
 	<div class="col-sm-4"></div>
-	<div class="col-sm-4">
-		Username: <input type="text" id="username"><br/>
-		Password: <input type="text" id="password"><br/>
-		<div id="errorMessage"></div>
-		<button class="btn btn-info" onclick="login()">Log-In</button>
-		<p>Don't have an account? <a href="signup.html">Click here to create one!</a></p>
+	<div class="col-sm-4 form1">
+		<h2 class="title">Enter your Username and Password to Sign-In</h2>
+		<table>
+			<tr>
+				<td>Username:</td><td><input type="text" id="username" class="form-control" maxlength="100"></td>
+			</tr>
+			<tr>
+				<td>Password:</td><td><input type="text" id="password" class="form-control" maxlength="100"></td>
+			</tr>
+		</table>
+		<div class="title">
+			<div id="errorMessage" class="pad1"></div>
+			<button class="btn btn-info pad1" onclick="login()">Log-In</button>
+			<p class="pad1">Don't have an account? <a href="signup.html">Click here to create one!</a></p>
+		</div>
 	</div>
 	<div class="col-sm-4"></div>
 

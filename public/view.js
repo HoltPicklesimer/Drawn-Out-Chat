@@ -3,7 +3,8 @@ var chat_id;
 var roomIndex = 0;
 var isAdmin = false;
 
-$(function(){ setInterval(updateOnTimer, 1000);}); // set a clock to update every second to reload the comments
+// set a clock to update every second to reload the comments
+$(function(){ setInterval(updateOnTimer, 1000);});
 
 var url = "https://gentle-tundra-31449.herokuapp.com/";
 
@@ -29,15 +30,30 @@ function updateOnTimer() {
 	loadUserRooms();
 }
 
-// Log the user out
-function logout() {
+// Start the session to get the user id, then call loadUser to load the user info
+function startSession() {
 	var params = {};
-	$.post(url + "logout", params, function(data, status){
+	$.post(url + "getSessionId", params, function(data, status){
 		console.log(status);
-		console.log(data.success);
 		if (data.success)
-			window.location.href = url + "login.html";
+		{
+			user_id = data.id;
+			loadUser();
+		}
 	});
+}
+
+/* Load the user info */
+function loadUser (id) {
+	// load the basic user info
+	var params = { id:user_id };
+	$.post(url + "getUserById", params, function(data, status){
+		console.log(status);
+		if (status == "success")
+			$("#user").html(data.username);
+	});
+
+	loadUserRooms();
 }
 
 // Kick person off if not logged in
@@ -50,16 +66,14 @@ function checkLoggedIn() {
 	});
 }
 
-// Start the session to get the user id, then call loadUser to load the user info
-function startSession() {
+// Log the user out
+function logout() {
 	var params = {};
-	$.post(url + "getSessionId", params, function(data, status){
+	$.post(url + "logout", params, function(data, status){
 		console.log(status);
+		console.log(data.success);
 		if (data.success)
-		{
-			user_id = data.id;
-			loadUser();
-		}
+			window.location.href = url + "login.html";
 	});
 }
 
@@ -76,17 +90,30 @@ function saveImage() {
 	});
 }
 
-/* Load the user info */
-function loadUser (id) {
-	// load the basic user info
-	var params = { id:user_id };
-	$.post(url + "getUserById", params, function(data, status){
+/* Update the image  from the database. */
+function updateImage() {
+	// update the image
+	var params = { id:chat_id };
+	$.get(url + "getChatRoom", params, function(data, status){
 		console.log(status);
 		if (status == "success")
-			$("#user").html(data.username);
+			loadImage(data.image_data);
 	});
+}
 
-	loadUserRooms();
+/* Load the image data passed as a parameter. */
+function loadImage(data) {
+	var image = JSON.parse(data);
+	if (clickX.length != image.clickX.length)
+	{
+		context.clearRect(0,0,context.canvas.width,context.canvas.height);
+		clickX = image.clickX;
+	  clickY = image.clickY;
+	  clickDrag = image.clickDrag;
+	  clickColor = image.clickColor;
+	  clickSize = image.clickSize;
+	}
+  redraw();
 }
 
 function loadUserRooms() {
@@ -128,6 +155,7 @@ function loadRoom() {
 		{
 			$("#chatName").html(data.name);
 			$("#admin").html(data.username);
+			// put admin user functions back in
 			if (user_id == data.admin_id)
 			{
 				isAdmin = true;
@@ -142,6 +170,7 @@ function loadRoom() {
 			}
 			else
 			{
+				// remove admin user functions
 				isAdmin = false;
 				$("#addUserDiv").empty();
 			}
@@ -150,21 +179,6 @@ function loadRoom() {
 			loadComments(chat_id);
 		}
 	});
-}
-
-/* Load the image data passed as a parameter. */
-function loadImage(data) {
-	var image = JSON.parse(data);
-	if (clickX.length != image.clickX.length)
-	{
-		context.clearRect(0,0,context.canvas.width,context.canvas.height);
-		clickX = image.clickX;
-	  clickY = image.clickY;
-	  clickDrag = image.clickDrag;
-	  clickColor = image.clickColor;
-	  clickSize = image.clickSize;
-	}
-  redraw();
 }
 
 // Load the Comments
@@ -189,36 +203,33 @@ function loadComments(id) {
 	});
 }
 
-/* Update the image */
-function updateImage() {
-	// update the image
-	var params = { id:chat_id };
-	$.get(url + "getChatRoom", params, function(data, status){
+/* When a user adds a comment to the Chat room */
+function addComment() {
+	// Get the comment
+	var data = $("#commentBox").val();
+
+	if (data == "")
+		return;
+
+	// Set up the parameters to send to the Controller
+	var params = { chatId:chat_id, userId:user_id, content:data };
+
+	$.post(url + "postComment", params, function(data, status){
 		console.log(status);
 		if (status == "success")
-			loadImage(data.image_data);
+			$("#commentBox").val('');
 	});
 }
 
-/* Search Users */
-function searchUsers() {
-	var item = $("#userSearch").val();
-	if (item == "")
-	{
-		$("#searchedUsers").empty();
-		return;
-	}
-	console.log(item);
-	var params = { item:item };
-	$.get(url + "searchUsers", params, function(data, status){
+/* Remove a comment from the chat room. */
+function removeComment(id) {
+	// Set up the parameters to send to the Controller
+	var params = { id:id };
+
+	$.post(url + "deleteComment", params, function(data, status){
 		console.log(status);
-		if (status == "success")
-		{
-			$("#searchedUsers").empty();
-			for (var i = 0; i < data.length; ++i)
-				$("#searchedUsers").append("<button class='btn btn-success' onclick='loadUserListToAdd(\""
-					+ data[i].id + "\")'>+</button> " + data[i].username + "<br/>");
-		}
+		 if (status == "success")
+			loadComments();
 	});
 }
 
@@ -241,6 +252,29 @@ function loadRoomUsers() {
 	});
 }
 
+/* Search Users */
+function searchUsers() {
+	var item = $("#userSearch").val();
+	if (item == "")
+	{
+		$("#searchedUsers").empty();
+		return;
+	}
+	console.log(item);
+	var params = { item:item };
+	$.get(url + "searchUsers", params, function(data, status){
+		console.log(status);
+		if (status == "success")
+		{
+			// display the results of the search
+			$("#searchedUsers").empty();
+			for (var i = 0; i < data.length; ++i)
+				$("#searchedUsers").append("<button class='btn btn-success' onclick='loadUserListToAdd(\""
+					+ data[i].id + "\")'>+</button> " + data[i].username + "<br/>");
+		}
+	});
+}
+
 /* Clear the users when focus is lost on the search bar */
 function clearUserSearch() {
 	if ($("#searchedUsers") == "")
@@ -248,24 +282,6 @@ function clearUserSearch() {
 		$("#searchedUsers").empty();
 		$("#errorMessage").empty();
 	}
-}
-
-/* When a user adds a comment to the Chat room */
-function addComment() {
-	// Get the comment
-	var data = $("#commentBox").val();
-
-	if (data == "")
-		return;
-
-	// Set up the parameters to send to the Controller
-	var params = { chatId:chat_id, userId:user_id, content:data };
-
-	$.post(url + "postComment", params, function(data, status){
-		console.log(status);
-		if (status == "success")
-			$("#commentBox").val('');
-	});
 }
 
 /* When the user creates a chat room */
@@ -353,46 +369,3 @@ function removeUser(id) {
 			loadRoomUsers();
 	});
 }
-
-/* Remove a user from the chat room. */
-function removeComment(id) {
-	// Set up the parameters to send to the Controller
-	var params = { id:id };
-
-	$.post(url + "deleteComment", params, function(data, status){
-		console.log(status);
-		 if (status == "success")
-			loadComments();
-	});
-}
-
-// function search() {
-// 	// Get the value from the search box
-// 	var searchString = $("#txtSearch").val();
-// 	console.log("Searching for: " + searchString);
-
-// 	// Set up the parameters to send to the API
-// 	var params = {s: searchString, apikey:"fill_this_in_with_the_correct_key"};
-
-// 	// Use jQuery to make the get request
-// 	$.get("http://www.omdbapi.com/", params, function(data, status){
-// 		// For debugging purposes, make a note that we're back
-// 		console.log("Back from server with the following results:")
-// 		console.log(status);
-//     	console.log(data);
-
-//     	updateResultList(data)
-// 	});
-// }
-
-// function updateResultList(data) {
-// 	if (data.Search && data.Search.length > 0) {
-// 		var resultList = $("#ulResults");
-// 		resultList.empty();
-
-// 		for (var i = 0; i < data.Search.length; i++) {
-// 			var title = data.Search[i].Title;
-// 			resultList.append("<li><p>" + title + "</p></li>");
-// 		}
-// 	}
-// }

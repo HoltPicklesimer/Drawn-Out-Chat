@@ -26,22 +26,38 @@
 
 </head>
 
-<body>
+<body class="bg1">
 
-<h2 id="chatName">Sign-Up</h2>
+<div class="titlebar container-fluid">
+	<h2 class="title2">Sign-Up</h2>
+</div>
+
+<br/>
+<br/>
+<br/>
 
 <div class="row" style="width:99%"> <!-- 99% width removes the horizontal scrollbar -->
 
 	<div class="col-sm-4"></div>
-	<div class="col-sm-4">
-		<h2>Enter a Username and Password to Sign-Up</h2>
-		Enter Username: <input type="text" id="username"><br/>
-		Enter Password: <input type="text" id="password"><br/>
-		Enter Password Again: <input type="text" id="password2"><br/>
-		<div id="errorMessage"></div>
-		<div id="success"></div>
-		<button class="btn btn-info" onclick="signup()">Sign-Up</button>
-		<p><a href="login.html">Click here to login.</a></p>
+	<div class="col-sm-4 form1">
+		<h2 class="title">Enter a Username and Password to Sign-Up</h2>
+		<table>
+			<tr>
+				<td>Enter Username:</td><td><input type="text" id="username" class="form-control" maxlength="100"></td>
+			</tr>
+			<tr>
+				<td>Enter Password:</td><td><input type="text" id="password" class="form-control" maxlength="100"></td>
+			</tr>
+			<tr>
+				<td>Enter Password Again:</td><td><input type="text" id="password2" class="form-control" maxlength="100"></td>
+			</tr>
+		</table>
+		<div class="title">
+			<div id="errorMessage" class="pad1"></div>
+			<div id="success" class="pad1"></div>
+			<button class="btn btn-info pad1" onclick="signup()">Sign-Up</button>
+			<p class="pad1"><a href="login.html">Click here to login.</a></p>
+		</div>
 	</div>
 	<div class="col-sm-4"></div>
 
