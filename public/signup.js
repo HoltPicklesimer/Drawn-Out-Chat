@@ -25,7 +25,7 @@ function signup() {
 
 // display an error if there is invalid input
 function displayError() {
-	$("#errorMessage").html("Invalid Username or Password.");
+	$("#errorMessage").html("Error: Invalid Username or Password.");
 }
 
 // display an error if there is invalid input

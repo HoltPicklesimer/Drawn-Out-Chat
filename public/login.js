@@ -26,7 +26,7 @@ function login() {
 
 // display an error if there is invalid input
 function displayError() {
-	$("#errorMessage").html("Your username or password are incorrect.");
+	$("#errorMessage").html("Error: Your username or password are incorrect.");
 }
 
 // clear errors when input has been fixed
