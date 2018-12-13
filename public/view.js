@@ -27,7 +27,6 @@ function updateOnTimer() {
 	}
 	loadComments();
 	loadRoomUsers();
-	loadUserRooms();
 }
 
 // Start the session to get the user id, then call loadUser to load the user info
@@ -97,7 +96,10 @@ function updateImage() {
 	$.get(url + "getChatRoom", params, function(data, status){
 		console.log(status);
 		if (status == "success")
+		{
 			loadImage(data.image_data);
+			loadUserRooms();
+		}
 	});
 }
 
