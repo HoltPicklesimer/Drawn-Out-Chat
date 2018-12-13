@@ -4,7 +4,7 @@ const { Pool } = require("pg");
 const pool = new Pool({connectionString: connectionString});
 
 var queries = [
-	"SELECT id, chat_id, user_id, content, date_published FROM comments WHERE id = $1::int",
+	"SELECT id, chat_id, user_id, content, date_published FROM comments WHERE id = $1::int ORDER BY id DESC",
 	"INSERT INTO comments (chat_id, user_id, content, date_published) VALUES ($1::int, $2::int, $3::text, current_timestamp)",
 	"DELETE FROM comments WHERE id = $1::int;"
 ];
