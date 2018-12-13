@@ -21,7 +21,7 @@ var curColor = "ffffff";
 var curSize = 5;
 
 var addX = 15;
-var addY = -75;
+var addY = -77;
 
 /* The added values account for padding and other elements. */
 
